@@ -332,5 +332,5 @@ public class HomeFragment extends Fragment {
         super.onResume();
         countForTest=6;
     }
-// Testingg
+
 }
