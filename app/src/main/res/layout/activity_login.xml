@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_button">
+
+
+        <LinearLayout
+            android:id="@+id/llmainview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top|center">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card"
+                    android:layout_width="800dp"
+                    android:layout_height="315dp"
+                    android:layout_gravity="center|center_vertical"
+
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/main_background"
+                    android:shadowColor="@color/white"
+                    android:shadowRadius="24"
+                    app:cardCornerRadius="24dp"
+                    tools:ignore="MissingConstraints">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/icback"
+                                android:layout_width="62dp"
+                                android:layout_height="62dp"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="16dp"
+                                android:src="@drawable/ic_round_keyboard_backspace_24"
+                                android:visibility="gone"
+                                app:tint="@color/hyperlink_color" />
+
+                            <TextView
+                                android:id="@+id/txttitle1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_gravity="center"
+                                android:drawableLeft="@drawable/ic_baseline_settings_suggest_24"
+
+                                android:drawablePadding="7dp"
+                                android:gravity="center"
+                                android:padding="12dp"
+                                android:text="Initial Setup"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                                android:textColor="@color/black" />
+                        </RelativeLayout>
+
+
+                        <TextView
+                            android:id="@+id/txtinfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/gray_light"
+                            android:gravity="left"
+                            android:paddingLeft="6dp"
+                            android:paddingTop="6dp"
+                            android:paddingRight="2dp"
+                            android:paddingBottom="6dp"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:text="In order to authenticate your license please enter in the following information:"
+                            android:textSize="18sp"
+                            android:textColor="@color/title_color" />
+
+                        <LinearLayout
+                            android:id="@+id/llstoreinfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="24dp"
+                            android:layout_marginRight="24dp"
+                            android:orientation="vertical">
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="7dp"
+                                android:orientation="horizontal">
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/textinput1"
+                                    style="@style/Widget.Design.TextInputLayout"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="12dp"
+                                    android:layout_marginRight="32dp"
+                                    android:layout_weight="1"
+                                    android:backgroundTint="@color/gray_light"
+                                    android:drawableLeft="@drawable/ic_baseline_call_24"
+                                    android:drawableTint="@color/title_color"
+                                    android:paddingTop="7dp"
+                                    app:boxBackgroundColor="@color/gray_light"
+                                    app:helperTextTextAppearance="@style/TextAppearance.AppCompat.Display1"
+                                    app:hintTextAppearance="@style/TextAppearance.AppCompat.Display1"
+                                    app:hintTextColor="@color/text_hint_color"
+                                    app:placeholderTextAppearance="@style/TextAppearance.AppCompat.Display1">
+
+                                    <androidx.appcompat.widget.AppCompatEditText
+                                        android:id="@+id/edtnumber"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:backgroundTint="@color/title_color"
+                                        android:hint="Enter store#"
+                                        android:inputType="number"
+                                        android:maxLength="8"
+                                        android:maxLines="1"
+                                        android:paddingTop="12dp"
+                                        android:privateImeOptions="nm"
+                                        android:singleLine="true"
+                                        android:text=""
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                                        android:textColor="@color/primary_dark"
+                                        android:textColorHint="@color/text_hint_color" />
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                                <androidx.appcompat.widget.AppCompatButton
+                                    android:id="@+id/btnnext"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="@dimen/btn_height"
+                                    android:layout_gravity="center|center_vertical"
+                                    android:layout_marginTop="4dp"
+                                    android:background="@drawable/button_press_effect"
+                                    android:baselineAligned="false"
+                                    android:enabled="false"
+                                    android:gravity="center|center_vertical"
+                                    android:paddingLeft="56dp"
+                                    android:paddingRight="56dp"
+                                    android:text="Continue"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                                    android:textColor="@color/textcolorappear" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/llinfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+
+                            <LinearLayout
+                                android:id="@+id/llsend"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center|center_vertical"
+                                android:layout_marginLeft="24dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginRight="24dp"
+                                android:layout_marginBottom="7dp"
+                                android:gravity="center|center_vertical"
+                                android:orientation="horizontal"
+                                android:visibility="gone">
+
+                                <TextView
+                                    android:id="@+id/txtmessage"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="32dp"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="We will send a code to Admin User's mobile number of (914) XXX-XX99"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                                    android:textColor="@color/black" />
+
+                                <androidx.appcompat.widget.AppCompatButton
+                                    android:id="@+id/btnsend"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="@dimen/btn_height"
+                                    android:layout_gravity="center|center_vertical"
+                                    android:layout_marginTop="4dp"
+                                    android:background="@drawable/button_press_effect"
+                                    android:baselineAligned="false"
+                                    android:drawablePadding="4dp"
+                                    android:gravity="center|center_vertical"
+                                    android:paddingLeft="48dp"
+                                    android:paddingRight="48dp"
+                                    android:text="Send Text"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                                    android:textColor="@color/textcolorappear" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/llcodedetail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="24dp"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginRight="24dp"
+                                android:layout_marginBottom="16dp"
+                                android:gravity="center_vertical"
+                                android:orientation="vertical"
+                                android:visibility="gone">
+
+                                <LinearLayout
+
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+
+                                    android:orientation="horizontal">
+
+                                    <com.google.android.material.textfield.TextInputLayout
+                                        android:id="@+id/textinput2"
+                                        style="@style/Widget.Design.TextInputLayout"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="12dp"
+                                        android:layout_marginRight="32dp"
+                                        android:layout_weight="1"
+                                        android:backgroundTint="@color/gray_light"
+                                        app:boxBackgroundColor="@color/gray_light"
+                                        app:helperTextTextAppearance="@style/TextAppearance.AppCompat.Display1"
+                                        app:hintTextAppearance="@style/TextAppearance.AppCompat.Display1"
+                                        app:hintTextColor="@color/text_hint_color"
+                                        app:placeholderTextAppearance="@style/TextAppearance.AppCompat.Display1">
+
+                                        <androidx.appcompat.widget.AppCompatEditText
+                                            android:id="@+id/edtcode"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:backgroundTint="@color/title_color"
+                                            android:hint="Enter access code"
+                                            android:inputType="number"
+                                            android:maxLength="4"
+                                            android:maxLines="1"
+                                            android:paddingTop="12dp"
+                                            android:privateImeOptions="nm"
+                                            android:singleLine="true"
+                                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                                            android:textColor="@color/primary_dark"
+                                            android:textColorHint="@color/text_hint_color" />
+                                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                                    <androidx.appcompat.widget.AppCompatButton
+                                        android:id="@+id/btncheckcode"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="@dimen/btn_height"
+                                        android:layout_gravity="center|center_vertical"
+                                        android:layout_marginTop="4dp"
+                                        android:background="@drawable/button_press_effect"
+                                        android:baselineAligned="false"
+                                        android:enabled="false"
+                                        android:gravity="center|center_vertical"
+                                        android:paddingLeft="56dp"
+                                        android:paddingRight="56dp"
+                                        android:text="Continue"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                                        android:textColor="@color/textcolorappear" />
+
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="60dp">
+
+                                    <TextView
+                                        android:id="@+id/txtnodata2"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="left|center"
+
+                                        android:layout_weight="1"
+                                        android:drawableTint="@color/red"
+                                        android:gravity="left|center"
+                                        android:paddingLeft="7dp"
+                                        android:text="Store not activated Store"
+                                        android:textColor="@color/red"
+                                        android:textSize="26sp"
+                                        android:visibility="invisible"></TextView>
+
+                                    <TextView
+                                        android:id="@+id/txtresend"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="60dp"
+                                        android:layout_gravity="right|center_vertical"
+                                        android:layout_marginRight="12dp"
+                                        android:gravity="right|center_vertical"
+                                        android:paddingLeft="7dp"
+                                        android:paddingRight="16dp"
+                                        android:text="Send again"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                                        android:textColor="@color/green"
+
+                                        />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/txtnodata"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_gravity="top|left"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginRight="16dp"
+                            android:drawableTint="@color/red"
+                            android:gravity="top|left"
+                            android:paddingLeft="16dp"
+                            android:text="Store not activated Store"
+                            android:textColor="@color/red"
+                            android:textSize="32sp"
+                            android:visibility="invisible" />
+
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/container"
+                android:layout_width="950dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginBottom="43dp"
+                android:background="@drawable/keyboard"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/llbottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="#EBEBEB"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="2dp">
+
+            <TextView
+                android:id="@+id/txtlogoff"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="Log Off"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="#00000000"
+                android:textStyle="italic"></TextView>
+
+            <TextView
+                android:id="@+id/txtappname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="Powered by Lightning Digital Marketing"
+                android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+                android:textColor="@color/black"></TextView>
+
+            <TextView
+                android:id="@+id/txtversion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="3dp"
+                android:ellipsize="end"
+                android:gravity="right|center_vertical"
+                android:maxLines="1"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+                android:textColor="@color/black"></TextView>
+        </LinearLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

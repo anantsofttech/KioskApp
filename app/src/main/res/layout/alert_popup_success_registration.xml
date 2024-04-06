@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="top|center_horizontal"
+    android:layout_margin="32dp"
+    android:background="@drawable/rounded_corenr_button_popup_normal"
+    android:gravity="top"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:gravity="top"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:id="@+id/lltop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginTop="16dp"
+            android:gravity="top"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="86dp"
+                android:layout_height="86dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_thumb"></ImageView>
+
+            <TextView
+                android:id="@+id/txtmessage1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_vertical"
+                android:gravity="center|center_vertical"
+                android:text="Congratulations"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="#5CAB43"></TextView>
+
+            <TextView
+                android:id="@+id/txtmessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_vertical"
+                android:layout_marginTop="12dp"
+                android:gravity="center|center_vertical"
+                android:text="You have been enrolled in our\nloyalty program:"
+                android:textColor="@color/black"
+                android:textSize="26sp"></TextView>
+
+            <TextView
+                android:id="@+id/txtname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_vertical"
+                android:layout_marginTop="32dp"
+                android:gravity="center|center_vertical"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="24sp"></TextView>
+
+            <TextView
+                android:id="@+id/txtemail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_vertical"
+                android:layout_marginTop="7dp"
+                android:gravity="center|center_vertical"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="24sp"></TextView>
+
+            <TextView
+                android:id="@+id/txtmobno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_vertical"
+                android:layout_marginTop="7dp"
+                android:gravity="center|center_vertical"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="24sp"></TextView>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardnextbtn"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:gravity="bottom|center_horizontal"
+        app:cardCornerRadius="@dimen/corner_dim"
+        card_view:cardBackgroundColor="#DCDCDC"
+        card_view:cardElevation="7dp"
+        card_view:cardUseCompatPadding="true">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnnext"
+            android:layout_width="match_parent"
+            android:layout_height="76dp"
+            android:layout_gravity="center|center_vertical"
+            android:background="@drawable/button_press_effect_loaylty"
+            android:baselineAligned="false"
+            android:gravity="center|center_vertical"
+            android:text="CLOSE"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@color/textcolorappear" />
+    </androidx.cardview.widget.CardView>
+</FrameLayout>

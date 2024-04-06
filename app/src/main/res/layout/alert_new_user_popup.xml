@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="top|center_horizontal"
+    android:layout_margin="32dp"
+    android:background="@drawable/rounded_corenr_button_popup_normal"
+    android:backgroundTint="@color/white"
+    android:gravity="top"
+
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:layout_margin="7dp"
+        android:gravity="top"
+        android:orientation="vertical">
+
+
+        <com.shuhart.stepview.StepView
+            android:id="@+id/step_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="12dp"
+            android:paddingLeft="7dp"
+            android:paddingTop="12dp"
+            android:paddingRight="7dp"
+            android:paddingBottom="12dp"
+            app:sv_animationType="All"
+            app:sv_doneCircleColor="@color/clr_loyalty"
+            app:sv_doneCircleRadius="36dp"
+            app:sv_doneStepLineColor="@color/clr_loyalty"
+            app:sv_doneStepMarkColor="@color/white"
+            app:sv_doneTextColor="@color/clr_loyalty"
+            app:sv_nextStepCircleColor="#90FFA858"
+            app:sv_nextStepCircleEnabled="true"
+            app:sv_nextStepLineColor="#90FFA858"
+            app:sv_nextTextColor="@color/black"
+            app:sv_selectedCircleColor="@color/clr_loyalty"
+            app:sv_selectedCircleRadius="36dp"
+            app:sv_selectedStepNumberColor="@color/white"
+            app:sv_selectedTextColor="@color/clr_loyalty"
+            app:sv_stepLineWidth="5dp"
+            app:sv_stepNumberTextSize="26sp"
+            app:sv_stepViewStyle="@style/StepView"
+            app:sv_stepsNumber="3"
+            app:sv_textSize="26sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textinput1"
+            style="@style/Widget.Design.TextInputLayout"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center_vertical"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:backgroundTint="@color/gray_light"
+            android:drawableTint="@color/text_hint_color"
+            app:boxBackgroundColor="@color/gray_light"
+            app:helperTextTextAppearance="@style/TextAppearance.AppCompat.Display1"
+            app:hintTextAppearance="@style/TextAppearance.AppCompat.Display1"
+            app:hintTextColor="@color/text_hint_color"
+            app:placeholderTextAppearance="@style/TextAppearance.AppCompat.Display1">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtfirstname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_vertical"
+                android:backgroundTint="@color/clr_loyalty"
+                android:gravity="center|center_vertical"
+                android:hint="Enter First Name"
+                android:inputType="textPersonName|textNoSuggestions|textCapWords"
+                android:maxLength="16"
+                android:maxLines="1"
+                android:paddingTop="12dp"
+                android:privateImeOptions="nm"
+                android:singleLine="true"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@color/clr_loyalty"
+                android:textColorHint="@color/text_hint_color"
+                android:theme="@style/Theme.KioskApp_loyalty" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textinput2"
+            style="@style/Widget.Design.TextInputLayout"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center_vertical"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:backgroundTint="@color/gray_light"
+            android:drawableLeft="@drawable/ic_baseline_call_24"
+            android:drawableTint="@color/text_hint_color"
+            android:visibility="gone"
+            app:boxBackgroundColor="@color/gray_light"
+            app:helperTextTextAppearance="@style/TextAppearance.AppCompat.Display1"
+            app:hintTextAppearance="@style/TextAppearance.AppCompat.Display1"
+            app:hintTextColor="@color/text_hint_color"
+            app:placeholderTextAppearance="@style/TextAppearance.AppCompat.Display1">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtlastname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_vertical"
+                android:backgroundTint="@color/text_hint_color"
+                android:gravity="center|center_vertical"
+                android:hint="Enter Last Name"
+                android:inputType="textPersonName|textNoSuggestions|textCapWords"
+                android:maxLength="16"
+                android:maxLines="1"
+                android:paddingTop="12dp"
+                android:privateImeOptions="nm"
+                android:singleLine="true"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@color/clr_loyalty"
+                android:textColorHint="@color/text_hint_color"
+                android:theme="@style/Theme.KioskApp_loyalty" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textinput4"
+            style="@style/Widget.Design.TextInputLayout"
+            android:layout_width="550dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center_vertical"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:backgroundTint="@color/gray_light"
+            android:drawableLeft="@drawable/ic_baseline_call_24"
+            android:drawableTint="@color/text_hint_color"
+            android:visibility="gone"
+            app:boxBackgroundColor="@color/gray_light"
+            app:helperTextTextAppearance="@style/TextAppearance.AppCompat.Display1"
+            app:hintTextAppearance="@style/TextAppearance.AppCompat.Display1"
+            app:hintTextColor="@color/text_hint_color"
+            app:placeholderTextAppearance="@style/TextAppearance.AppCompat.Display1">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtemailid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_vertical"
+                android:backgroundTint="@color/text_hint_color"
+                android:gravity="center|center_vertical"
+                android:hint="Enter Email"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:paddingTop="12dp"
+                android:privateImeOptions="nm"
+                android:singleLine="true"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@color/clr_loyalty"
+                android:textColorHint="@color/text_hint_color"
+                android:theme="@style/Theme.KioskApp_loyalty" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center"
+            android:layout_margin="7dp"
+            android:gravity="center">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:gravity="bottom|center_horizontal"
+                app:cardCornerRadius="@dimen/corner_dim"
+                card_view:cardBackgroundColor="#DCDCDC"
+                card_view:cardElevation="7dp"
+                card_view:cardUseCompatPadding="true">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnjoinprev"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_height"
+                    android:layout_gravity="center|center_vertical"
+                    android:background="@drawable/button_press_effect_loaylty"
+                    android:baselineAligned="false"
+                    android:enabled="false"
+                    android:gravity="center|center_vertical"
+                    android:text="Prev"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="@color/textcolorappear_loyalty" />
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:gravity="bottom|center_horizontal"
+                app:cardCornerRadius="@dimen/corner_dim"
+                android:layout_marginLeft="8dp"
+                card_view:cardBackgroundColor="#DCDCDC"
+                card_view:cardElevation="7dp"
+                card_view:cardUseCompatPadding="true">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnjoinnext"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_height"
+                    android:layout_gravity="center|center_vertical"
+                    android:background="@drawable/button_press_effect_loaylty"
+                    android:baselineAligned="false"
+                    android:gravity="center|center_vertical"
+                    android:text="Next"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="@color/textcolorappear_loyalty" />
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtnodata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="4dp"
+            android:gravity="center_vertical|center"
+            android:padding="12dp"
+            android:text="We have sent OTP to mobile number!"
+            android:textColor="@color/red"
+            android:textSize="24sp"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/close"
+        android:layout_width="270dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="16dp"
+        android:gravity="center|center_vertical"
+        android:text="Return"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/clr_loyalty" />
+</FrameLayout>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:layout_gravity="top|center_horizontal"
+    android:layout_margin="32dp"
+    android:gravity="top"
+    android:background="@drawable/rounded_corenr_button_popup_normal"
+    android:backgroundTint="@color/white"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardnextbtn"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|center_vertical"
+        android:gravity="center|center_vertical"
+        app:cardCornerRadius="@dimen/corner_dim"
+        card_view:cardBackgroundColor="#DCDCDC"
+        card_view:cardElevation="7dp"
+        card_view:cardUseCompatPadding="true">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnJoinNow"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height"
+            android:layout_gravity="center|center_vertical"
+            android:background="@drawable/button_press_effect_loaylty"
+            android:baselineAligned="false"
+            android:gravity="center|center_vertical"
+            android:text="Register Now"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@color/textcolorappear" />
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/imgdog"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="top"
+        android:src="@drawable/ic_dog"
+        ></ImageView>
+    <ImageView
+        android:id="@+id/imgcat"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_gravity="bottom|right"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/ic_cat"
+        ></ImageView>
+
+    <ImageView
+        android:id="@+id/imgbg"
+        android:layout_width="250dp"
+        android:layout_height="450dp"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="65dp"
+        android:src="@drawable/ic_wine"
+        ></ImageView>
+    <TextView
+        android:id="@+id/btnnext"
+        android:layout_width="270dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:gravity="center|center_vertical"
+        android:text="Return"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/clr_loyalty" />
+
+    <TextView
+        android:id="@+id/txttitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="32dp"
+        android:paddingBottom="7dp"
+        android:layout_gravity="top|center_horizontal"
+        android:gravity="center|center_vertical"
+        android:text="Account Not Registered"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/black" />
+
+</FrameLayout>

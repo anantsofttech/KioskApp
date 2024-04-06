@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="20dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="20dp"
+            tools:ignore="MissingConstraints">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+                android:layout_gravity="center_vertical"
+
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/icback"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_round_keyboard_backspace_24"
+                    app:tint="@color/clr_purchase"></ImageView>
+
+                <TextView
+                    android:id="@+id/txttitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center_vertical"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="Purchase History"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/lltop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:orientation="vertical">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textinput1"
+                    style="@style/Widget.Design.TextInputLayout"
+                    android:layout_width="430dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="16dp"
+                    android:backgroundTint="@color/gray_light"
+                    android:drawableLeft="@drawable/ic_baseline_call_24"
+                    android:drawableTint="@color/title_color"
+                    app:boxBackgroundColor="@color/gray_light"
+                    app:helperTextTextAppearance="@style/TextAppearance.AppCompat.Display1"
+                    app:hintTextAppearance="@style/TextAppearance.AppCompat.Display1"
+                    app:hintTextColor="@color/text_hint_color"
+                    app:placeholderTextAppearance="@style/TextAppearance.AppCompat.Display1">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edtnumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|center_vertical"
+                        android:backgroundTint="@color/clr_purchase"
+                        android:gravity="center|center_vertical"
+                        android:hint="Enter your mobile#"
+                        android:inputType="phone"
+                        android:maxLength="14"
+                        android:maxLines="1"
+                        android:paddingTop="12dp"
+                        android:privateImeOptions="nm"
+                        android:singleLine="true"
+                        android:text=""
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textColor="@color/clr_purchase"
+                        android:textColorHint="@color/text_hint_color"
+                        android:theme="@style/Theme.KioskApp_recentpurchase"
+                        tools:ignore="SpeakableTextPresentCheck" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textinput2"
+                    style="@style/Widget.Design.TextInputLayout"
+                    android:layout_width="430dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="16dp"
+                    android:backgroundTint="@color/gray_light"
+                    android:drawableLeft="@drawable/ic_baseline_call_24"
+                    android:drawableTint="@color/title_color"
+                    android:visibility="gone"
+                    app:boxBackgroundColor="@color/gray_light"
+                    app:helperTextTextAppearance="@style/TextAppearance.AppCompat.Display1"
+                    app:hintTextAppearance="@style/TextAppearance.AppCompat.Display1"
+                    app:hintTextColor="@color/text_hint_color"
+                    app:placeholderTextAppearance="@style/TextAppearance.AppCompat.Display1">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edtcode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|center_vertical"
+                        android:backgroundTint="#FF6A70"
+                        android:gravity="center|center_vertical"
+                        android:hint="Enter OTP"
+                        android:inputType="number"
+                        android:maxLength="4"
+                        android:maxLines="1"
+                        android:paddingTop="12dp"
+                        android:privateImeOptions="nm"
+                        android:singleLine="true"
+                        android:text=""
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textColor="@color/clr_purchase"
+                        android:textColorHint="@color/text_hint_color"
+                        android:theme="@style/Theme.KioskApp_recentpurchase" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardnextbtn"
+                        android:layout_width="440dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|center_vertical"
+                        android:gravity="center|center_vertical"
+                        android:paddingTop="12dp"
+                        app:cardCornerRadius="@dimen/corner_dim"
+                        card_view:cardBackgroundColor="#DCDCDC"
+                        card_view:cardElevation="0dp"
+                        card_view:cardUseCompatPadding="true">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnnext"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/btn_height"
+                            android:layout_gravity="center|center_vertical"
+                            android:background="@drawable/button_press_effect_recentpurchase"
+                            android:baselineAligned="false"
+                            android:enabled="false"
+                            android:gravity="center|center_vertical"
+                            android:text="Continue"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                            android:textColor="@color/textcolorappear_purchase" />
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardbtnnextverify"
+                        android:layout_width="440dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|center_vertical"
+                        android:gravity="center|center_vertical"
+                        android:paddingTop="12dp"
+                        android:visibility="gone"
+                        app:cardCornerRadius="@dimen/corner_dim"
+                        card_view:cardBackgroundColor="#DCDCDC"
+                        card_view:cardElevation="7dp"
+                        card_view:cardUseCompatPadding="true">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnnextverify"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/btn_height"
+                            android:layout_gravity="center|center_vertical"
+                            android:background="@drawable/button_press_effect_loaylty"
+                            android:baselineAligned="false"
+                            android:enabled="false"
+                            android:gravity="center|center_vertical"
+                            android:text="Verify &amp; Login"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                            android:textColor="@color/textcolorappear" />
+                    </androidx.cardview.widget.CardView>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </LinearLayout>
+
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/lldetails"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtusername"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left|center_vertical"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="7dp"
+                        android:drawableLeft="@drawable/ic_hello"
+                        android:drawablePadding="12dp"
+                        android:gravity="left|center_vertical"
+                        android:paddingLeft="22dp"
+                        android:text="Hi, "
+                        android:textColor="#111111"
+                        android:textSize="30sp"></TextView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardproducts"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:fitsSystemWindows="true"
+                        android:shadowColor="@color/white"
+                        android:shadowRadius="16"
+                        app:cardBackgroundColor="#DEFFF1"
+                        app:cardCornerRadius="16dp">
+
+                        <LinearLayout
+                            android:id="@+id/lllastpurchases"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/txtlastpurchases"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left|center_vertical"
+                                android:gravity="left|center_vertical"
+                                android:paddingLeft="16dp"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginRight="8dp"
+                                android:layout_marginTop="8dp"
+                                android:paddingTop="8dp"
+                                android:text="Last Purchases"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                                android:textColor="#1EBC43"></TextView>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rvLastPurchases"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_margin="16dp"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                tools:listitem="@layout/row_item_category" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="7dp"
+                            android:layout_height="300dp"
+                            android:layout_gravity="right"
+                            android:layout_marginTop="160dp"
+                            android:background="@drawable/gradient_purchasehistory"
+                            android:backgroundTint="@color/clr_purchase"></View>
+
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/gradient_purchasehistory"
+            android:gravity="bottom"
+            android:orientation="vertical">
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llpopup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="90dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginBottom="22dp"
+        android:visibility="gone"
+        android:background="@drawable/rounded_corner_card"
+        android:gravity="center"
+       >
+
+        <include
+            android:id="@+id/errorpopup"
+            layout="@layout/alert_popup_new_purchase"></include>
+    </LinearLayout>
+
+</RelativeLayout>

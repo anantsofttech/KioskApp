@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center|center_vertical"
+    android:layout_margin="12dp"
+    android:background="@drawable/rounded_corenr_button_popup_normal"
+    android:gravity="center|center_vertical"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/lltop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corenr_button_popup"
+        android:padding="32dp"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:id="@+id/ivprogress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_gravity="center_vertical|center"></ProgressBar>
+        <TextView
+            android:id="@+id/txtmessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center_vertical"
+            android:gravity="center|center_vertical"
+            android:layout_marginTop="32dp"
+            android:text="Account Not Found"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            android:textColor="@color/black"
+            ></TextView>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnnext"
+            android:layout_width="270dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="24dp"
+            android:layout_gravity="center|center_vertical"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/rounded_corenr_button"
+            android:baselineAligned="false"
+            android:gravity="center|center_vertical"
+            android:paddingLeft="54dp"
+            android:paddingRight="54dp"
+            android:text="OK"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@color/white"
+             />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

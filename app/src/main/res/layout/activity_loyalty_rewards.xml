@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="20dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="20dp"
+            tools:ignore="MissingConstraints">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+                android:layout_gravity="center_vertical"
+
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/icback"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_round_keyboard_backspace_24"
+                    app:tint="@color/clr_loyalty"></ImageView>
+
+                <TextView
+                    android:id="@+id/txtloyaltyrewardname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center_vertical"
+                    android:drawableTint="@color/white"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="Loyalty Rewards"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:id="@+id/llmobilesection"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textinput1"
+                    style="@style/Widget.Design.TextInputLayout"
+                    android:layout_width="440dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="16dp"
+                    android:backgroundTint="@color/gray_light"
+                    android:drawableLeft="@drawable/ic_baseline_call_24"
+                    android:drawableTint="@color/title_color"
+                    app:boxBackgroundColor="@color/gray_light"
+                    app:helperTextTextAppearance="@style/TextAppearance.AppCompat.Display1"
+                    app:hintTextAppearance="@style/TextAppearance.AppCompat.Display1"
+                    app:hintTextColor="@color/text_hint_color"
+                    app:placeholderTextAppearance="@style/TextAppearance.AppCompat.Display1">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edtnumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|center_vertical"
+                        android:backgroundTint="@color/clr_loyalty"
+                        android:gravity="center|center_vertical"
+                        android:hint="Enter your mobile#"
+                        android:inputType="phone"
+                        android:maxLength="14"
+                        android:maxLines="1"
+                        android:paddingTop="12dp"
+                        android:privateImeOptions="nm"
+                        android:singleLine="true"
+                        android:text=""
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textColor="@color/clr_loyalty"
+                        android:textColorHint="@color/text_hint_color"
+                        android:theme="@style/Theme.KioskApp_loyalty" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+<!--                android:layout_width="440dp"-->
+<!--                edited by janvi by-->
+<!--                android:layout_width="520dp"-->
+<!--                end-->
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:visibility="gone"
+                    android:id="@+id/textinput2"
+                    style="@style/Widget.Design.TextInputLayout"
+                    android:layout_width="520dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="16dp"
+                    android:backgroundTint="@color/gray_light"
+                    android:drawableLeft="@drawable/ic_baseline_call_24"
+                    android:drawableTint="@color/title_color"
+                    app:boxBackgroundColor="@color/gray_light"
+                    app:helperTextTextAppearance="@style/TextAppearance.AppCompat.Display1"
+                    app:hintTextAppearance="@style/TextAppearance.AppCompat.Display1"
+                    app:hintTextColor="@color/text_hint_color"
+                    app:placeholderTextAppearance="@style/TextAppearance.AppCompat.Display1">
+
+<!--                    <androidx.appcompat.widget.AppCompatEditText-->
+<!--                        android:id="@+id/edtcode"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center|center_vertical"-->
+<!--                        android:backgroundTint="@color/clr_loyalty"-->
+<!--                        android:gravity="center|center_vertical"-->
+<!--                        android:hint="Enter OTP"-->
+<!--                        android:inputType="number"-->
+<!--                        android:maxLength="4"-->
+<!--                        android:maxLines="1"-->
+<!--                        android:paddingTop="12dp"-->
+<!--                        android:privateImeOptions="nm"-->
+<!--                        android:singleLine="true"-->
+<!--                        android:text=""-->
+<!--                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"-->
+<!--                        android:textColor="@color/clr_loyalty"-->
+<!--                        android:textColorHint="@color/text_hint_color"-->
+<!--                        android:theme="@style/Theme.KioskApp_loyalty" />-->
+<!--                </com.google.android.material.textfield.TextInputLayout>-->
+
+                    <!--                    edited by janvi by commenting above-->
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edtcode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|center_vertical"
+                        android:backgroundTint="@color/clr_loyalty"
+                        android:gravity="center|center_vertical"
+                        android:hint="Enter the code we texted you."
+                        android:inputType="number"
+                        android:maxLength="4"
+                        android:maxLines="1"
+                        android:paddingTop="12dp"
+                        android:privateImeOptions="nm"
+                        android:singleLine="true"
+                        android:text=""
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textColor="@color/clr_loyalty"
+                        android:textColorHint="@color/text_hint_color"
+                        android:theme="@style/Theme.KioskApp_loyalty" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <!--                end this-->
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardnextbtn"
+                        android:layout_width="440dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|center_vertical"
+                        android:gravity="center|center_vertical"
+                        android:paddingTop="12dp"
+                        app:cardCornerRadius="@dimen/corner_dim"
+                        card_view:cardBackgroundColor="#DCDCDC"
+                        card_view:cardElevation="0dp"
+                        card_view:cardUseCompatPadding="true">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnnext"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/btn_height"
+                            android:layout_gravity="center|center_vertical"
+                            android:background="@drawable/button_press_effect_loaylty"
+                            android:baselineAligned="false"
+                            android:enabled="false"
+                            android:gravity="center|center_vertical"
+                            android:text="Login"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                            android:textColor="@color/textcolorappear_loyalty" />
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:visibility="gone"
+                        android:id="@+id/cardbtnnextverify"
+                        android:layout_width="440dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|center_vertical"
+                        android:gravity="center|center_vertical"
+                        android:paddingTop="12dp"
+                        app:cardCornerRadius="@dimen/corner_dim"
+                        card_view:cardBackgroundColor="#DCDCDC"
+                        card_view:cardElevation="7dp"
+                        card_view:cardUseCompatPadding="true">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnnextverify"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/btn_height"
+                            android:layout_gravity="center|center_vertical"
+                            android:background="@drawable/button_press_effect_loaylty"
+                            android:baselineAligned="false"
+                            android:enabled="false"
+                            android:gravity="center|center_vertical"
+                            android:text="Verify &amp; Login"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                            android:textColor="@color/textcolorappear_loyalty" />
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <TextView
+                        android:visibility="gone"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:id="@+id/txtBusiness"
+                        android:justificationMode="inter_word"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center_vertical"
+                        android:drawableTint="@color/white"
+                        android:gravity="left"
+                        android:textSize="16dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:text="@string/business_requires"
+                        android:textColor="@color/text_hint_color" />
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </LinearLayout>
+
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/lldetails"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                >
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtusername"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left|center_vertical"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="7dp"
+                        android:drawableLeft="@drawable/ic_hello"
+                        android:drawablePadding="12dp"
+                        android:gravity="left|center_vertical"
+                        android:paddingLeft="22dp"
+                        android:text="Hi, "
+                        android:textColor="#111111"
+                        android:textSize="30sp"></TextView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|center"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center_vertical|center">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gradient_keyboard_loyalty"
+                            android:orientation="horizontal"
+                            android:padding="12dp">
+
+                            <ImageView
+                                android:layout_width="72dp"
+                                android:layout_height="72dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="8dp"
+                                android:src="@drawable/points_icon"></ImageView>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="8dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tvskuitle"
+                                    android:layout_width="match_parent"
+
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="left|center_vertical"
+
+                                    android:ellipsize="end"
+                                    android:gravity="left|center_vertical"
+                                    android:maxLines="1"
+                                    android:paddingTop="4dp"
+                                    android:singleLine="true"
+                                    android:text="Points Total"
+                                    android:textColor="@color/white"
+                                    android:textSize="26sp" />
+
+
+                                <TextView
+                                    android:id="@+id/txtpoints"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="top"
+                                    android:layout_marginTop="-4dp"
+                                    android:ellipsize="end"
+                                    android:gravity="top"
+                                    android:maxLines="1"
+                                    android:text="0"
+                                    android:textColor="@color/white"
+                                    android:textSize="46sp"></TextView>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gradient_keyboard_loyalty"
+                            android:orientation="horizontal"
+                            android:padding="12dp">
+
+                            <ImageView
+                                android:layout_width="72dp"
+                                android:layout_height="72dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="8dp"
+                                android:src="@drawable/rewards_icon"></ImageView>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="8dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tvdeptitle"
+                                    android:layout_width="match_parent"
+
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="left|center_vertical"
+                                    android:ellipsize="end"
+                                    android:gravity="left|center_vertical"
+                                    android:paddingTop="4dp"
+                                    android:singleLine="true"
+                                    android:text="Rewards Total"
+                                    android:textColor="@color/white"
+                                    android:textSize="26sp" />
+
+
+                                <TextView
+                                    android:id="@+id/txtrewards"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="top"
+                                    android:layout_marginTop="-4dp"
+                                    android:ellipsize="end"
+                                    android:gravity="top"
+                                    android:maxLines="1"
+                                    android:text="0"
+                                    android:textColor="@color/white"
+                                    android:textSize="46sp"></TextView>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardproducts"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="26dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="10dp"
+                        android:fitsSystemWindows="true"
+                        android:shadowColor="@color/white"
+                        android:shadowRadius="16"
+                        app:cardBackgroundColor="#FDF8F4"
+                        app:cardCornerRadius="16dp">
+
+                        <LinearLayout
+                            android:id="@+id/lllastpurchases"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:paddingBottom="8dp">
+
+                            <TextView
+                                android:id="@+id/txtlastpurchases"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left|center_vertical"
+                                android:gravity="left|center_vertical"
+                                android:paddingLeft="24dp"
+                                android:paddingTop="16dp"
+                                android:text="Last Purchases"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                                android:textColor="#FF6E7E"></TextView>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rvLastPurchases"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginTop="12dp"
+                                android:layout_marginRight="16dp"
+                                android:layout_marginBottom="16dp"
+                                android:orientation="vertical"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                tools:listitem="@layout/row_item_category" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="7dp"
+                            android:layout_height="300dp"
+                            android:layout_gravity="right"
+                            android:layout_marginTop="160dp"
+                            android:background="@drawable/gradient_loyalty_rewards"
+                            android:backgroundTint="@color/clr_loyalty"></View>
+
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/gradient_keyboard_loyalty"
+            android:gravity="bottom"
+            android:orientation="vertical">
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llpopup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginBottom="22dp"
+        android:background="@drawable/rounded_corner_card"
+        android:gravity="center"
+        android:visibility="gone"
+
+        >
+
+        <include
+            android:id="@+id/errorpopup"
+            layout="@layout/alert_popup_loyalty"></include>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llpopupnormal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginBottom="22dp"
+        android:background="@drawable/rounded_corner_card"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <include
+            android:id="@+id/errorpopupnormal"
+            layout="@layout/alert_popup_new_loyalty"></include>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llnewuserpopup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginBottom="22dp"
+        android:background="@drawable/rounded_corner_card"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <include
+            android:id="@+id/alertNewPopup"
+            layout="@layout/alert_new_user_popup"></include>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llsuccess"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginBottom="22dp"
+        android:background="@drawable/rounded_corner_card"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <include
+            android:id="@+id/alertsuccess"
+            layout="@layout/alert_popup_success_registration"></include>
+    </LinearLayout>
+</RelativeLayout>

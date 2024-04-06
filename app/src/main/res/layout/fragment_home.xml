@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:grid="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center|center_vertical"
+        android:gravity="center|center_vertical"
+        android:paddingLeft="20dp"
+        android:paddingTop="20dp"
+        android:orientation="vertical">
+
+        <androidx.gridlayout.widget.GridLayout
+            android:id="@+id/llgrid"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7"
+            app:columnCount="2"
+            grid:useDefaultMargins="true">
+
+
+            <LinearLayout
+                android:id="@+id/cardLoyalty"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/gradient_loyalty_rewards"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_columnWeight="1"
+                app:layout_gravity="fill_horizontal"
+                app:layout_rowWeight="1">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/rounded"
+                    android:gravity="center"
+
+                    >
+
+                    <ImageView
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center|center_vertical"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginRight="28dp"
+                        android:layout_marginTop="28dp"
+                        android:layout_marginBottom="28dp"
+                        android:src="@drawable/loyalty_rewards">
+
+
+                    </ImageView>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtloyalty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:paddingLeft="12dp"
+                    android:paddingTop="6dp"
+                    android:paddingRight="12dp"
+                    android:text="Loyalty Rewards"
+                    android:textAllCaps="true"
+                    android:textSize="24sp"
+                    android:textColor="@color/white"
+                    ></TextView>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/cardGiftcards"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/gradient_giftcards"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_columnWeight="1"
+                app:layout_gravity="fill_horizontal"
+                app:layout_rowWeight="1">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/rounded"
+                    android:gravity="center"
+
+                    >
+
+                    <ImageView
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center|center_vertical"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginRight="28dp"
+                        android:layout_marginTop="28dp"
+                        android:layout_marginBottom="28dp"
+                        android:src="@drawable/giftcards_ico">
+
+
+                    </ImageView>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtgiftcard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:paddingLeft="12dp"
+                    android:paddingTop="6dp"
+                    android:paddingRight="12dp"
+                    android:text="Gift Cards"
+                    android:textAllCaps="true"
+                    android:textSize="24sp"
+                    android:textColor="@color/white"
+                    ></TextView>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/cardItems"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/gradient_itemlookup"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_columnWeight="1"
+                app:layout_gravity="fill_horizontal"
+                app:layout_rowWeight="1">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/rounded"
+                    android:gravity="center"
+
+                    >
+
+                    <ImageView
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center|center_vertical"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginRight="28dp"
+                        android:layout_marginTop="28dp"
+                        android:layout_marginBottom="28dp"
+                        android:src="@drawable/item_look_up_ico">
+
+
+                    </ImageView>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtitemlookup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+
+                    android:paddingLeft="12dp"
+                    android:paddingTop="6dp"
+                    android:paddingRight="12dp"
+                    android:text="Item Look Up"
+                    android:textAllCaps="true"
+                    android:textSize="24sp"
+                    android:textColor="@color/white"
+                    ></TextView>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cardPurchaseHistory"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/gradient_purchasehistory"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_columnWeight="1"
+                app:layout_gravity="fill_horizontal"
+                app:layout_rowWeight="1">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/rounded"
+                    android:gravity="center"
+
+                    >
+
+                    <ImageView
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center|center_vertical"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginRight="28dp"
+                        android:layout_marginTop="28dp"
+                        android:layout_marginBottom="28dp"
+                        android:src="@drawable/purchase_ico">
+
+
+                    </ImageView>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtpurchasehistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+
+                    android:paddingLeft="12dp"
+                    android:paddingTop="6dp"
+                    android:paddingRight="12dp"
+                    android:text="Purchase History"
+                    android:textAllCaps="true"
+                    android:textSize="24sp"
+                    android:textColor="@color/white"
+                    ></TextView>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/card_foodpair"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/gradient_foodwine"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_columnWeight="1"
+                app:layout_gravity="fill_horizontal"
+                app:layout_rowWeight="1">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/rounded"
+                    android:gravity="center"
+
+                    >
+
+                    <ImageView
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center|center_vertical"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginRight="28dp"
+                        android:layout_marginTop="28dp"
+                        android:layout_marginBottom="28dp"
+                        android:src="@drawable/food_wine_ico">
+
+
+                    </ImageView>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtfood"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+
+                    android:paddingLeft="12dp"
+                    android:paddingTop="6dp"
+                    android:paddingRight="12dp"
+                    android:text="Food &amp; Wine"
+                    android:textAllCaps="true"
+                    android:textSize="24sp"
+                    android:textColor="@color/white"
+                    ></TextView>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/carddrink"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/gradient_drinks"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_columnWeight="1"
+                app:layout_gravity="fill_horizontal"
+                app:layout_rowWeight="1">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/rounded"
+                    android:gravity="center"
+
+                    >
+
+                    <ImageView
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center|center_vertical"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginRight="28dp"
+                        android:layout_marginTop="28dp"
+                        android:layout_marginBottom="28dp"
+                        android:src="@drawable/drink_ico">
+
+
+                    </ImageView>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtdrink"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+
+                    android:paddingLeft="12dp"
+                    android:paddingTop="6dp"
+                    android:paddingRight="12dp"
+                    android:text="Drink Recipes"
+                    android:textAllCaps="true"
+                    android:textSize="24sp"
+                    android:textColor="@color/white"
+                    ></TextView>
+
+
+            </LinearLayout>
+
+
+        </androidx.gridlayout.widget.GridLayout>
+
+        <LinearLayout
+            android:id="@+id/lllast"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="6dp"
+            android:layout_weight="3"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+
+            <LinearLayout
+                android:id="@+id/card_foodpair1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/gradient_foodwine"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/rounded"
+                    android:gravity="center"
+
+                    >
+
+                    <ImageView
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center|center_vertical"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginRight="28dp"
+                        android:layout_marginTop="28dp"
+                        android:layout_marginBottom="28dp"
+                        android:src="@drawable/food_wine_ico">
+
+
+                    </ImageView>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtfood1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+
+                    android:paddingLeft="12dp"
+                    android:paddingTop="6dp"
+                    android:paddingRight="12dp"
+                    android:text="Food &amp; Wine"
+                    android:textAllCaps="true"
+                    android:textSize="24sp"
+                    android:textColor="@color/white"
+                    ></TextView>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/carddrink2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/gradient_drinks"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/rounded"
+                    android:gravity="center"
+
+                    >
+
+                    <ImageView
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center|center_vertical"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginRight="28dp"
+                        android:layout_marginTop="28dp"
+                        android:layout_marginBottom="28dp"
+                        android:src="@drawable/drink_ico">
+
+
+                    </ImageView>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtdrink1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+
+                    android:paddingLeft="12dp"
+                    android:paddingTop="6dp"
+                    android:paddingRight="12dp"
+                    android:text="Drink Recipes"
+                    android:textAllCaps="true"
+                    android:textSize="24sp"
+                    android:textColor="@color/white"
+                    ></TextView>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

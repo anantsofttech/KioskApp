@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="left"
+    android:layout_margin="4dp"
+    android:background="@drawable/rounded_border_multioptions"
+    android:gravity="left"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/imgproduct"
+        android:layout_width="82dp"
+        android:layout_height="82dp"
+        android:src="@drawable/no_image"></ImageView>
+
+    <TextView
+        android:id="@+id/tv_product_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="2dp"
+        android:drawableLeft="@drawable/ic_product_bullet"
+        android:layout_weight="1"
+        android:drawablePadding="7dp"
+        android:drawableTint="@color/clr_itemlook"
+        android:ellipsize="end"
+        android:gravity="top"
+        android:maxLines="1"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:text="Product 1 "
+        android:textColor="@color/black"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/tvunit1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="8dp"
+        android:gravity="bottom"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:text="500m;"
+        android:textColor="@color/title_color"
+        android:textSize="20sp" />
+
+
+    <TextView
+        android:id="@+id/txtdiscountedprice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="7dp"
+
+        android:gravity="top"
+
+        android:text="100"
+        android:textColor="@color/red"
+        android:textSize="26sp" />
+
+    <TextView
+        android:id="@+id/txtprice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="12dp"
+        android:gravity="center_vertical"
+        android:text=""
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/clr_itemlook"
+        android:textSize="28sp" />
+
+</LinearLayout>
