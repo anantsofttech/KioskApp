@@ -210,12 +210,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void stopHandler() {
-        handler.removeCallbacks(r);
+        if (handler != null && r != null) {
+            handler.removeCallbacks(r);
+        }
     }
 
     public void startHandler() {
         // handler.postDelayed(r, 10000); //for  10 seconds
-        handler.postDelayed(r, 20000); //for  20 seconds
+//        handler.postDelayed(r, 20000); //for  20 seconds
     }
 
     @Override
