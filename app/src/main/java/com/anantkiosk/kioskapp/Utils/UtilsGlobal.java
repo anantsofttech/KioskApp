@@ -118,6 +118,7 @@ public class UtilsGlobal {
     public static String storetype ="";
     public static int adunit_height = 0;
     public static int adunit_width = 0;
+    public static boolean unauthorized = false;
 
 
     public static void saveStore(Activity activity, Store store) {

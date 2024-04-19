@@ -424,7 +424,12 @@ public class AdvertisementFragment extends Fragment implements   TaskRetrieveAdu
                         UtilsGlobal.localgetAdRequestModel.clear();
                     }
                     Toast.makeText(getActivity(), "Calling AGAIN", Toast.LENGTH_SHORT).show();
-                    callgetAdunit(UtilsGlobal.store.getId() + "_"+"k1");
+                    if (UtilsGlobal.unauthorized){
+                        UtilsGlobal.unauthorized = false;
+                        Auth_QT();
+                    }else {
+                        callgetAdunit(UtilsGlobal.store.getId() + "_" + "k1");
+                    }
                 }
             };
             handler.postDelayed(delayedRunnable, delayMillis);

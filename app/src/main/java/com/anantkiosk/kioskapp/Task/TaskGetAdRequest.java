@@ -304,6 +304,7 @@ public class TaskGetAdRequest extends AsyncTask<String, Void, GetAdRequestModel>
             URL url = new URL(string);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
+            connection.setConnectTimeout(15000);
             // Set request method and headers
             connection.setRequestMethod("GET");
             connection.setRequestProperty("Content-Type", "application/json");

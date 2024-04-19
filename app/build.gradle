@@ -11,8 +11,8 @@ android {
         applicationId "com.anantkiosk.kioskapp"
         minSdkVersion 19
         targetSdkVersion 33
-        versionCode 55
-        versionName "LightningKioskV1.55"
+        versionCode 57
+        versionName "LightningKioskV1.57"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -74,7 +74,7 @@ dependencies {
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
 
     implementation 'com.squareup.retrofit2:converter-scalars:2.1.0'
-//    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-analytics'
     implementation platform('com.google.firebase:firebase-bom:28.4.2')
     implementation 'com.github.demoNo:AutoScrollViewPager:v1.0.2'

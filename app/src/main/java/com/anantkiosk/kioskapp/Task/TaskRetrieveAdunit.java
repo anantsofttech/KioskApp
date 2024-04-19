@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.anantkiosk.kioskapp.Home.HomeFragments.AdvertisementFragment;
 import com.anantkiosk.kioskapp.Model.RetrieveAdunitModel;
+import com.anantkiosk.kioskapp.Utils.UtilsGlobal;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -58,7 +59,11 @@ public class TaskRetrieveAdunit extends AsyncTask<String, Void, List<RetrieveAdu
 
             if (response==null || response.isEmpty()){
                 return Collections.emptyList();
-            }else {
+            }else if (response.equals("Unauthorized")){
+                UtilsGlobal.unauthorized=true;
+                return Collections.emptyList();
+            }
+            else {
                 // Deserialize the response into a RetrieveAdunitModel object (not a list)
                 retrieveAdunitModel = objectMapper.readValue(response, RetrieveAdunitModel.class);
                 return Collections.singletonList(retrieveAdunitModel);
@@ -78,6 +83,7 @@ public class TaskRetrieveAdunit extends AsyncTask<String, Void, List<RetrieveAdu
             URL url = new URL(string);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
+            connection.setConnectTimeout(15000);
             // Set request method and headers
             connection.setRequestMethod("GET");
             connection.setRequestProperty("Content-Type", "application/json");
@@ -104,6 +110,9 @@ public class TaskRetrieveAdunit extends AsyncTask<String, Void, List<RetrieveAdu
                 // Close the streams
                 bufferedReader.close();
                 inputStream.close();
+            }else if (responseCode == HttpURLConnection.HTTP_UNAUTHORIZED){
+                response = "Unauthorized";
+                return response;
             }
 
             // Disconnect the connection
