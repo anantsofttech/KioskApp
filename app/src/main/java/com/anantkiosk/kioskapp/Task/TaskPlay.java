@@ -6,13 +6,12 @@ import android.util.Log;
 
 import com.anantkiosk.kioskapp.Home.HomeFragments.AdvertisementFragment;
 import com.anantkiosk.kioskapp.Model.PlayModel;
+import com.anantkiosk.kioskapp.Utils.UtilsGlobal;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.anantkiosk.kioskapp.Task.TaskGetAdRequest.performNetworkRequest;
 
 public class TaskPlay extends AsyncTask<String, String, PlayModel> {
 
@@ -53,9 +52,10 @@ public class TaskPlay extends AsyncTask<String, String, PlayModel> {
 
         Log.i("web service--GetAdunit", "request url : " + url);
 
-        response = performNetworkRequest(url, authToken);
+        response = UtilsGlobal.performNetworkRequest(url, authToken);
 
         Log.i("web service--GetAdunit", "response: " + response);
+        UtilsGlobal.call_log_WS(context,"Receive from QT", params[0], response);
 
         // Parse the JSON response using Jackson ObjectMapper
         ObjectMapper objectMapper = new ObjectMapper();

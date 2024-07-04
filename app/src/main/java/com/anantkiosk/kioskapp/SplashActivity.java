@@ -152,6 +152,7 @@ public class SplashActivity extends AppCompatActivity {
 //                }
 //            }
             if (savedStore == null) {
+                UtilsGlobal.call_log_WS(SplashActivity.this,"Going to Login Activity - 1 from Splash Screen ","","");
                 Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
@@ -196,6 +197,7 @@ public class SplashActivity extends AppCompatActivity {
                             ApiClientBillBoard.signId = "";
                             UtilsGlobal.saveSign(SplashActivity.this, null);
                             new Handler().postDelayed(() -> {
+                                UtilsGlobal.call_log_WS(SplashActivity.this,"Going to Login Activity - 2 from Splash Screen ","","");
                                 Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                                 startActivity(intent);
                                 finish();
@@ -206,6 +208,7 @@ public class SplashActivity extends AppCompatActivity {
                         ApiClientBillBoard.signId = "";
                         UtilsGlobal.saveSign(SplashActivity.this, null);
                         new Handler().postDelayed(() -> {
+                            UtilsGlobal.call_log_WS(SplashActivity.this,"Going to Login Activity - 3 from Splash Screen ","","");
                             Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                             startActivity(intent);
                             finish();
@@ -215,6 +218,7 @@ public class SplashActivity extends AppCompatActivity {
                     ApiClientBillBoard.signId = "";
                     UtilsGlobal.saveSign(SplashActivity.this, null);
                     new Handler().postDelayed(() -> {
+                        UtilsGlobal.call_log_WS(SplashActivity.this,"Going to Login Activity - 4 from Splash Screen ","","");
                         Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                         startActivity(intent);
                         finish();
@@ -227,6 +231,7 @@ public class SplashActivity extends AppCompatActivity {
             public void onFailure(Call<ArrayList<Result>> call, Throwable t) {
                 call.cancel();
                 new Handler().postDelayed(() -> {
+                    UtilsGlobal.call_log_WS(SplashActivity.this,"Going to Login Activity - 5 from Splash Screen ","","");
                     Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
@@ -400,6 +405,7 @@ public class SplashActivity extends AppCompatActivity {
                 }
                 UtilsGlobal.saveStore(SplashActivity.this, UtilsGlobal.store);
                 new Handler().postDelayed(() -> {
+                    UtilsGlobal.call_log_WS(SplashActivity.this,"Going to Main Activity - 1 from Splash Screen","","");
                     Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
@@ -415,6 +421,7 @@ public class SplashActivity extends AppCompatActivity {
                     UtilsGlobal.store.setIsAllowGiftCardBalanceCheck("false");
                     UtilsGlobal.saveStore(SplashActivity.this, UtilsGlobal.store);
                     new Handler().postDelayed(() -> {
+                        UtilsGlobal.call_log_WS(SplashActivity.this,"Going to Main Activity - 2 from Splash Screen","","");
                         Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();

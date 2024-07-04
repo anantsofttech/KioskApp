@@ -100,7 +100,7 @@ public class TaskImages extends AsyncTask<String, Void, String> {
                         }
                     }
                 }
-
+                UtilsGlobal.call_log_WS(context, "Receive Response from Computer Perfect Server", strings[0], response);
                 return response;
 
             } catch (JsonParseException e) {

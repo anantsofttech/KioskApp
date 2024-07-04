@@ -113,6 +113,7 @@ public class AdvertiseImageSliderAdapter extends InfinitePagerAdapter {
             }else {
 
                 Log.e("", "getItemView: 123" + url );
+                String s1 = "Showing Computer Perfect Image";
                 try {
                     RequestOptions requestOptions = new RequestOptions()
                             .skipMemoryCache(true)
@@ -120,12 +121,32 @@ public class AdvertiseImageSliderAdapter extends InfinitePagerAdapter {
                             .apply(new RequestOptions().override(800, 1200))
                             .apply(new RequestOptions().centerCrop());
 
-                    Glide.with(context)
+                    Glide.with(imageView.getContext())
                             .load(url)
-                            .apply(requestOptions)
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .override(800, 1280)
+                            .dontAnimate()
+                            .dontTransform()
+                            .fitCenter()
                             .into(imageView);
 
-                } catch (Exception e) {
+                    UtilsGlobal.call_log_WS(context,s1,"", url);
+
+                } catch(Exception e){
+
+                    e.printStackTrace();
+
+                    String s2 = "Showing Computer Perfect Image going in catch";
+                    UtilsGlobal.call_log_WS(context,s2,"", url);
+
+                    Glide.with(imageView.getContext())
+                            .load(url)
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .override(800, 1280)
+                            .dontAnimate()
+                            .dontTransform()
+                            .fitCenter()
+                            .into(imageView);
                 }
             }
             UtilsGlobal.dismissProgressBar();

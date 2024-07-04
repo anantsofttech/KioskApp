@@ -52,7 +52,8 @@ public class ResponseListActivity extends AppCompatActivity {
 //                        Edited by Varun for QT
 //                        AdvertisementFragment.context.fetchAdvFromBlip();
                         if (UtilsGlobal.isFromQT) {
-                            AdvertisementFragment.context.Auth_QT();
+//                            AdvertisementFragment.context.Auth_QT();
+                            AdvertisementFragment.context.callgetAdunit(UtilsGlobal.store.getId() + "_"+"k1");
                         }else{
                             AdvertisementFragment.context.callImagesWs();
                         }

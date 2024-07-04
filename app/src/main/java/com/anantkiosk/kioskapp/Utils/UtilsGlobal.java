@@ -4,11 +4,15 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
+import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Environment;
 import android.text.format.DateUtils;
@@ -21,6 +25,7 @@ import android.widget.TextView;
 import androidx.core.app.ActivityCompat;
 
 import com.anantkiosk.kioskapp.Api.ApiClientBillBoard;
+import com.anantkiosk.kioskapp.Api.ApiInterface;
 import com.anantkiosk.kioskapp.MainActivity;
 import com.anantkiosk.kioskapp.Model.AdvSign;
 import com.anantkiosk.kioskapp.Model.Auth_QTModel;
@@ -58,6 +63,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 import java.util.UUID;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -65,6 +72,10 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UtilsGlobal {
 
@@ -119,6 +130,7 @@ public class UtilsGlobal {
     public static int adunit_height = 0;
     public static int adunit_width = 0;
     public static boolean unauthorized = false;
+    public static boolean ad_unit_not_found = false;
 
 
     public static void saveStore(Activity activity, Store store) {
@@ -479,9 +491,215 @@ public class UtilsGlobal {
                 responseStrBuilder.append(line);
             }
         } finally {
-            if (connection != null) connection.disconnect();
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                connection.disconnect();
+            }
         }
 
+    }
+
+    public static String performNetworkRequest(String string, String authToken) {
+
+        String response = null;
+        HttpURLConnection connection = null;
+        BufferedReader bufferedReader = null;
+
+        try {
+            URL url = new URL(string);
+            connection = (HttpURLConnection) url.openConnection();
+
+            connection.setConnectTimeout(15000);
+            connection.setReadTimeout(15000);
+
+            // Set request method and headers
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setRequestProperty("Authorization", "Bearer " + authToken);
+
+
+            // Get the response code
+            int responseCode = connection.getResponseCode();
+
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                // Read the response
+                InputStream inputStream = connection.getInputStream();
+                bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                StringBuilder stringBuilder = new StringBuilder();
+                String line;
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    stringBuilder.append(line);
+                }
+
+                response = stringBuilder.toString();
+
+                // Close the streams
+                bufferedReader.close();
+                inputStream.close();
+            }else if (responseCode == HttpURLConnection.HTTP_UNAUTHORIZED){
+                response = "Unauthorized";
+                return response;
+            }else{
+                response = "null";
+                return response;
+            }
+
+            // Disconnect the connection
+            connection.disconnect();
+        } catch (SocketTimeoutException e) {
+            response = "null";
+            Log.e("", "Time Out: " );
+            e.printStackTrace();
+            return response;
+        } catch (IOException e) {
+            response = "null";
+            Log.e("", "IOException: " );
+            e.printStackTrace();
+            return response;
+        }finally {
+            if (bufferedReader != null) {
+                try {
+                    bufferedReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                connection.disconnect();
+            }
+        }
+
+        return response;
+    }
+
+    private static final ExecutorService executorService = Executors.newCachedThreadPool();
+
+//    public static void call_log_WS(Context context, String type, String request, String response) {
+//
+//        // Make response effectively final by creating a new variable
+//        final String finalResponse = (response == null) ? "null" : response;
+//
+//        Runnable loggingTask = new Runnable() {
+//            @Override
+//            public void run() {
+//                String store_no = UtilsGlobal.AppPref.getString("store", "");
+//                String station_no = "k1";
+//                String version_code = "";
+//                String type2 =  "";
+//
+//                int batteryPercentage = getBatteryPercentage(context);
+//
+//                type2 = type + ", Battery Percentage : " + batteryPercentage;
+//
+//                try {
+//                    PackageInfo pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+//                    version_code = "V1." + pInfo.versionCode;
+//                } catch (PackageManager.NameNotFoundException e) {
+//                    e.printStackTrace();
+//                }
+//
+//                Log.e("Request", "Station number: " + " type: " + type2 + " request: " + request +" response: " +finalResponse);
+//
+//                ApiInterface apiService = ApiClientBillBoard.getClient().create(ApiInterface.class);
+//                try{
+//
+//                    Call<Void> call = apiService.addQTResponseLog_V1(store_no, station_no, type2, request, finalResponse, version_code, "Kiosk");
+//                    call.enqueue(new Callback<Void>() {
+//                        @Override
+//                        public void onResponse(Call<Void> call, Response<Void> response) {
+//                            Log.e("", "onResponse: log Success " );
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Call<Void> call, Throwable t) {
+//                            Log.e("", "onResponse: log fail " + t.getMessage().toString() );
+//                        }
+//                    });
+//
+//                }catch (Exception e){
+//                    e.printStackTrace();
+//                    return;
+//                }
+//            }
+//        };
+//
+//        executorService.submit(loggingTask);
+//    }
+
+    public static void call_log_WS(Context context, String type, String request, String response) {
+
+        // Make response effectively final by creating a new variable
+        final String finalResponse = (response == null) ? "null" : response;
+
+        Runnable loggingTask = new Runnable() {
+            @Override
+            public void run() {
+                String store_no = UtilsGlobal.store.getId();
+                String station_no = "k1";
+                String version_code = "";
+                String type2 =  "";
+
+                String batteryPercentage = String.valueOf(getBatteryPercentage(context));
+
+//                type2 = type + ", Battery Percentage : " + batteryPercentage;
+
+                try {
+                    PackageInfo pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+                    version_code = "V1." + pInfo.versionCode;
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                Log.e("Request", "Store no: " + store_no + "Station number: " + station_no + " type: " + type + " request: " + request +" response: " + finalResponse +"Version: " + version_code + "Feature_type: " + "Kiosk" + "Battery_percentage: " +batteryPercentage);
+
+                ApiInterface apiService = ApiClientBillBoard.getClient().create(ApiInterface.class);
+                try{
+
+                    Call<Void> call = apiService.addQTResponseLog_V2(store_no, station_no, type, request, finalResponse, version_code, "Kiosk",batteryPercentage);
+                    call.enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            Log.e("", "onResponse: log Success:  " + response.code());
+                        }
+
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            Log.e("", "onResponse: log fail " + t.getMessage().toString() );
+                        }
+                    });
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                    return;
+                }
+            }
+        };
+
+        executorService.submit(loggingTask);
+    }
+
+    private static int getBatteryPercentage(Context context) {
+        try {
+            IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+            Intent batteryStatus = context.registerReceiver(null, ifilter);
+            if (batteryStatus != null) {
+                int level = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+                int scale = batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
+                return (int) ((level / (float) scale) * 100);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+        return -1; // Return -1 if battery status is unavailable or error occurred
     }
 
 

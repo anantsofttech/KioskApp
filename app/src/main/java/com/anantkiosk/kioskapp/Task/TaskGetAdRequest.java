@@ -67,13 +67,13 @@ public class TaskGetAdRequest extends AsyncTask<String, Void, GetAdRequestModel>
     protected GetAdRequestModel doInBackground(String... strings) {
         Log.i("web service--GetAdunit", "request url : " + strings[0]);
 
-        response = performNetworkRequest(strings[0], authToken);
+        response = UtilsGlobal.performNetworkRequest(strings[0], authToken);
 
         //        Edited by varun
         //        Added this code for only to take 1920*1080 size image to display.
 
         try {
-            if (response != null && !response.isEmpty()) {
+            if (response != null && !response.isEmpty() && response.equals("null")) {
                 JSONObject jsonObject = new JSONObject(response);
                 JSONArray snapshotsArray = jsonObject.getJSONObject("creative").getJSONArray("snapshots");
 
@@ -81,25 +81,31 @@ public class TaskGetAdRequest extends AsyncTask<String, Void, GetAdRequestModel>
                 UtilsGlobal.imageMime="";
                 UtilsGlobal.imageURL="";
 
-                for (int i = 0; i < snapshotsArray.length(); i++) {
-                    JSONObject snapshot = snapshotsArray.getJSONObject(i);
-                    double scalingFactor = snapshot.getDouble("scaling_factor");
-                    int height = snapshot.getInt("h");
-                    int width = snapshot.getInt("w");
-                    String mime = snapshot.getString("mime");
+                if (snapshotsArray != null && snapshotsArray.length() >= 0) {
+
+                    for (int i = 0; i < snapshotsArray.length(); i++) {
+                        JSONObject snapshot = snapshotsArray.getJSONObject(i);
+                        double scalingFactor = snapshot.getDouble("scaling_factor");
+                        int height = snapshot.getInt("h");
+                        int width = snapshot.getInt("w");
+                        String mime = snapshot.getString("mime");
 
 //                    if (height == 1920 && width == 1080 && mime.contains("jpeg")) {
 //                        desiredSnapshot = snapshot;
 //                        Log.e("", "taken:1");
 //                        break;
 //                    }
-                    if (height == UtilsGlobal.adunit_height && width == UtilsGlobal.adunit_width && mime.contains("jpeg")) {
-                        desiredSnapshot = snapshot;
-                        break;
-                    } else if (scalingFactor == 1.0 && mime.equals("image/jpeg")) {
-                        desiredSnapshot = snapshot;
-                        break;
+                        if (height == UtilsGlobal.adunit_height && width == UtilsGlobal.adunit_width && mime.contains("jpeg")) {
+                            Log.e("", "desired snapshot: from comparing width and height" );
+                            desiredSnapshot = snapshot;
+                            break;
+                        } else if (scalingFactor == 1.0 && mime.equals("image/jpeg")) {
+                            Log.e("", "desired snapshot: from comparing Scaling factor" );
+                            desiredSnapshot = snapshot;
+                            break;
+                        }
                     }
+
                 }
 
                 if (desiredSnapshot != null) {
@@ -114,9 +120,12 @@ public class TaskGetAdRequest extends AsyncTask<String, Void, GetAdRequestModel>
                     UtilsGlobal.imageURL = imageUrl;
                     UtilsGlobal.imageMime = imagemime;
 
-                } else {
-                    // Handle the case where a snapshot with a height of 1080 is not found
                 }
+//                else {
+////                    This is called when the desired snapshot will not be there
+//                    Log.e("", "Doing repsonse null because desired snap shot is not found ");
+//                    response = "";
+//                }
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -131,14 +140,23 @@ public class TaskGetAdRequest extends AsyncTask<String, Void, GetAdRequestModel>
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
         try {
-            if (response != null && !response.isEmpty()) {
-                getAdRequestModel = objectMapper.readValue(response, GetAdRequestModel.class);
-            } else {
+
+            if (response==null || response.isEmpty() || response.equals("null")){
                 // Handle the case when the response is null
+                UtilsGlobal.call_log_WS(context,"Receive from QT for Ad request", strings[0], response);
                 getAdRequestModel = null;
+            }else if (response.equals("Unauthorized")){
+                UtilsGlobal.call_log_WS(context,"Receive from QT for Ad request", strings[0], response);
+                UtilsGlobal.unauthorized=true;
+                getAdRequestModel = null;
+            }else{
+                UtilsGlobal.call_log_WS(context,"Receive from QT for Ad request", strings[0], response);
+                getAdRequestModel = objectMapper.readValue(response, GetAdRequestModel.class);
             }
-        } catch (IOException e) {
+        } catch (IOException e){
+            getAdRequestModel = null;
             e.printStackTrace();
+            UtilsGlobal.call_log_WS(context,"Ad request Task Catch", strings[0], response);
         }
 
         return getAdRequestModel;
@@ -150,100 +168,7 @@ public class TaskGetAdRequest extends AsyncTask<String, Void, GetAdRequestModel>
         super.onPostExecute(s);
 
         if (s!=null) {
-            AdvSign imagesDetailModel = new AdvSign();
-            if (imageUrl != null && !imageUrl.isEmpty()) {
-                imagesDetailModel.setUrl(imageUrl);
-            } else {
-                imagesDetailModel.setUrl(imageUrl);
-            }
-            imagesDetailModel.setId(imagemime);
-//        Constant.ImageDetalList2.clear();
-            UtilsGlobal.ImageDetalList2.add(imagesDetailModel);
-            if (!UtilsGlobal.ImageDetalList3.isEmpty()&&UtilsGlobal.ImageDetalList3!=null){
-                UtilsGlobal.ImageDetalList3.clear();
-            }
-            UtilsGlobal.ImageDetalList3.add(imagesDetailModel);
-            String urlImageinner = "";
-            if (imageUrl != null && !imageUrl.isEmpty()) {
-                urlImageinner = imageUrl;
-            } else {
-                urlImageinner = imageUrl;
-            }
-            try {
-                Glide.with(context).asDrawable().load(urlImageinner).dontTransform().priority(Priority.LOW).fitCenter().preload(800, 1280);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-//            UtilsGlobal.saveImages(context, UtilsGlobal.ImageDetalList2, "QT", UtilsGlobal.STOREID);
-
-            UtilsGlobal.LocalImageDetalList2 = new ArrayList<>();
-
-            if (!UtilsGlobal.LocalImageDetalList2.isEmpty() && UtilsGlobal.LocalImageDetalList2!=null){
-                UtilsGlobal.LocalImageDetalList2.clear();
-            }
-
-            for (int j = 0; j < UtilsGlobal.ImageDetalList2.size(); j++) {
-                AdvSign imagesDetailModel1 = UtilsGlobal.ImageDetalList2.get(j);
-                // commented below line for displaying centralized img with imgpath
-//                    String urlDetail = Constant.IMG_BASE + Constant.IMG_BANNER_URL + imagesDetailModel.getStoreNo() + "/" + imagesDetailModel.getImage();
-                String urlDetail = imagesDetailModel1.getUrl().toString().trim();
-
-                // aaded to prevent app crashes when image=""
-                String imgName = "";
-                String extention = "";
-
-                if (imagesDetailModel1.getId() != null && !imagesDetailModel1.getId().isEmpty()) {
-                    String[] split = imagesDetailModel1.getId().split("/");
-//                    String[] split = imagesDetailModel.getImagepath().toString().split("\\.");
-                    imgName = split[0];
-                    extention = split[1];
-                }
-                // end **********************
-
-                File tempFile = null;
-                File sdcard = null;
-                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                    //Do something
-                    sdcard = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-                } else {
-                    sdcard = Environment.getExternalStorageDirectory();
-                }
-                tempFile = new File(sdcard + "/NewQT/" + j + "_" +
-                        imgName +
-                        "." + extention);
-                File dir = tempFile.getParentFile();
-                try {
-                    if (!dir.exists())
-                        dir.mkdirs();
-                    if (!tempFile.exists()) {
-                        tempFile.createNewFile();
-                    } else {
-                        tempFile.delete();
-                        tempFile = new File(sdcard + "/NewQT/" + j + "_" +
-                                imgName +
-                                "." + extention);
-                        tempFile.createNewFile();
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-
-                }
-                if (tempFile.exists()) {
-                    AdvSign model = new AdvSign();
-                    model.setName("Home");
-                    model.setId(tempFile.getAbsolutePath());
-                    model.setUrl(tempFile.getAbsolutePath());
-//                        Constant.LocalImageDetalList.add(i, model); //crashed here
-                    UtilsGlobal.LocalImageDetalList2.add(model); //edited by janvi on 03/31/2023
-
-                    if (UtilsGlobal.LocalImageDetalList2.size() >= UtilsGlobal.ImageDetalList2.size()) {
-//                        UtilsGlobal.saveImages(context, UtilsGlobal.LocalImageDetalList2, "QT", UtilsGlobal.STOREID);
-                    }
-                    //Log.d("kaveriImage", "SAVED IN LOCAL home");
-                    saveImage(context, urlDetail, tempFile);
-                }
-            }
-
+            UtilsGlobal.call_log_WS(context,"Going to the Ad Request response handling in onGetAdRequestResult Function-1","","");
             if (taskGetAdRequestEvent != null && taskGetAdRequestEvent != null) {
                 // Convert the single object into a list
                 List<GetAdRequestModel> resultList = new ArrayList<>();
@@ -252,94 +177,9 @@ public class TaskGetAdRequest extends AsyncTask<String, Void, GetAdRequestModel>
                 taskGetAdRequestEvent.onGetAdRequestResult(resultList,ad_unit_name);
             }
         }else {
-            // Handle the case when the response is null
+            UtilsGlobal.call_log_WS(context,"Going to the Ad Request response handling in onGetAdRequestResult Function-2","","");
             taskGetAdRequestEvent.onGetAdRequestResult(null,ad_unit_name);
         }
-
-    }
-
-    public void saveImage(Context mContext, String urlDetail, File tempFile) {
-        if (mContext != null) {
-            Glide.with(mContext)
-                    .asBitmap()
-                    .load(urlDetail)
-                    .into(new CustomTarget<Bitmap>() {
-                        @Override
-                        public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
-                            write(resource, tempFile);
-                        }
-
-                        @Override
-                        public void onLoadCleared(Drawable placeholder) {
-                        }
-                    });
-        }
-    }
-
-    public void write(Bitmap bitmap, File tempFile) {
-        OutputStream outStream = null;
-        try {
-            outStream = new FileOutputStream(tempFile);
-            bitmap.compress(Bitmap.CompressFormat.PNG, 80, outStream);
-            outStream.close();
-
-            // Perform required operations when all images are saved
-            UtilsGlobal.ImageDetalList2 = new ArrayList<>();
-//                Constant.ImageHeaderList = new ArrayList<>();
-//                Constant.ImageFooterList = new ArrayList<>();
-            UtilsGlobal.ImageDetalList2.addAll(UtilsGlobal.LocalImageDetalList2);
-//                Constant.ImageHeaderList.addAll(Constant.LocalImageHeaderList);
-//                Constant.ImageFooterList.addAll(Constant.LocalImageFooterList);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static String performNetworkRequest(String string, String authToken) {
-
-        String response = null;
-
-        try {
-            URL url = new URL(string);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-            connection.setConnectTimeout(15000);
-            // Set request method and headers
-            connection.setRequestMethod("GET");
-            connection.setRequestProperty("Content-Type", "application/json");
-            connection.setRequestProperty("Accept", "application/json");
-            connection.setRequestProperty("Authorization", "Bearer " + authToken);
-
-
-            // Get the response code
-            int responseCode = connection.getResponseCode();
-
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-                // Read the response
-                InputStream inputStream = connection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-                StringBuilder stringBuilder = new StringBuilder();
-                String line;
-
-                while ((line = bufferedReader.readLine()) != null) {
-                    stringBuilder.append(line);
-                }
-
-                response = stringBuilder.toString();
-
-                // Close the streams
-                bufferedReader.close();
-                inputStream.close();
-            }
-
-            // Disconnect the connection
-            connection.disconnect();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return response;
     }
 
 }

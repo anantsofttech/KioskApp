@@ -139,4 +139,27 @@ public interface ApiInterface {
     @POST("token")
     Call<Auth_QTModel> AUTH_QT_CALL(@Body RequestBody str);
 
+    @FormUrlEncoded
+    @POST("CSCode/WebStoreOnlineService.asmx/AddQTResponseLog_V1")
+    Call<Void> addQTResponseLog_V1(
+            @Field("storeno") String storeno,
+            @Field("station_no") String station_no,
+            @Field("type") String type,
+            @Field("Request") String Request,
+            @Field("Response") String Response,
+            @Field("Version") String Version,
+            @Field("featureType") String featureType);
+
+    @FormUrlEncoded
+    @POST("CSCode/WebStoreOnlineService.asmx/AddQTResponseLog_V2")
+    Call<Void> addQTResponseLog_V2(
+            @Field("storeno") String storeno,
+            @Field("station_no") String station_no,
+            @Field("type") String type,
+            @Field("Request") String Request,
+            @Field("Response") String Response,
+            @Field("Version") String Version,
+            @Field("featureType") String featureType,
+            @Field("Batterypercentage") String batteryPercentage);
+
 }

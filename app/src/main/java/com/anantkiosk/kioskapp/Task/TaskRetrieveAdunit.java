@@ -29,6 +29,7 @@ public class TaskRetrieveAdunit extends AsyncTask<String, Void, List<RetrieveAdu
     RetrieveAdunitModel retrieveAdunitModel; // Change this to RetrieveAdunitModel
     ProgressDialog loading = null;
     private String authToken;
+    URL url ;
 
     public TaskRetrieveAdunit(AdvertisementFragment context1, Context context, String access_token) {
         this.taskRetrieveAdunitEvent = (TaskRetrieveAdunitEvent) context1;
@@ -57,33 +58,49 @@ public class TaskRetrieveAdunit extends AsyncTask<String, Void, List<RetrieveAdu
 
         try {
 
-            if (response==null || response.isEmpty()){
+            if (response == null || response.isEmpty() || response.equals("null")) {
+                UtilsGlobal.call_log_WS(context,"Receive from QT for Ad_Unit verification", url.toString(), response);
                 return Collections.emptyList();
-            }else if (response.equals("Unauthorized")){
-                UtilsGlobal.unauthorized=true;
+            } else if (response.equals("Unauthorized")) {
+                UtilsGlobal.unauthorized = true;
+                UtilsGlobal.call_log_WS(context,"Receive from QT for Ad_Unit verification", url.toString(), response);
                 return Collections.emptyList();
+            } else if (response.equals("Not Found")) {
+                UtilsGlobal.ad_unit_not_found = true;
+                UtilsGlobal.call_log_WS(context,"Receive from QT for Ad_Unit verification", url.toString(), response);
+                return Collections.emptyList();
+            } else {
+                try {
+                    // Deserialize the response into a RetrieveAdunitModel object (not a list)
+                    retrieveAdunitModel = objectMapper.readValue(response, RetrieveAdunitModel.class);
+                    UtilsGlobal.call_log_WS(context,"Receive from QT for Ad_Unit verification", url.toString() , response.toString());
+                    return Collections.singletonList(retrieveAdunitModel);
+                } catch (IOException e) {
+                    UtilsGlobal.call_log_WS(context,"Ad_Unit verification task catch", url.toString(), response);
+                    return Collections.emptyList();
+                }
             }
-            else {
-                // Deserialize the response into a RetrieveAdunitModel object (not a list)
-                retrieveAdunitModel = objectMapper.readValue(response, RetrieveAdunitModel.class);
-                return Collections.singletonList(retrieveAdunitModel);
-            }
-        } catch (IOException e) {
+        }catch (Exception e) {
+            UtilsGlobal.call_log_WS(context,"Ad_Unit verification Task Catch", url.toString(), response);
             e.printStackTrace();
         }
 
         return null;
     }
 
+
     private String performNetworkRequest(String string, String authToken) {
 
         String response = null;
+        HttpURLConnection connection = null;
+        BufferedReader bufferedReader =null;
 
         try {
-            URL url = new URL(string);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            url = new URL(string);
+            connection = (HttpURLConnection) url.openConnection();
 
             connection.setConnectTimeout(15000);
+            connection.setReadTimeout(15000);
             // Set request method and headers
             connection.setRequestMethod("GET");
             connection.setRequestProperty("Content-Type", "application/json");
@@ -97,7 +114,7 @@ public class TaskRetrieveAdunit extends AsyncTask<String, Void, List<RetrieveAdu
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 // Read the response
                 InputStream inputStream = connection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
                 StringBuilder stringBuilder = new StringBuilder();
                 String line;
 
@@ -113,12 +130,32 @@ public class TaskRetrieveAdunit extends AsyncTask<String, Void, List<RetrieveAdu
             }else if (responseCode == HttpURLConnection.HTTP_UNAUTHORIZED){
                 response = "Unauthorized";
                 return response;
+            }else if (responseCode == HttpURLConnection.HTTP_NOT_FOUND){
+                response = "Not Found";
+                return response;
+            }
+            else{
+                response ="null";
+                return response;
             }
 
             // Disconnect the connection
             connection.disconnect();
         } catch (IOException e) {
+            response = "null";
             e.printStackTrace();
+            return response;
+        }finally {
+            if (bufferedReader != null) {
+                try {
+                    bufferedReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                connection.disconnect();
+            }
         }
 
         return response;
@@ -132,6 +169,7 @@ public class TaskRetrieveAdunit extends AsyncTask<String, Void, List<RetrieveAdu
         super.onPostExecute(resultList);
 
         if (taskRetrieveAdunitEvent != null) {
+            UtilsGlobal.call_log_WS(context,"Going to the Ad unit response handling in onRetrieveAdunitResult Function","","");
             if (resultList != null && !resultList.isEmpty()) {
                 taskRetrieveAdunitEvent.onRetrieveAdunitResult(resultList, false);
             } else {

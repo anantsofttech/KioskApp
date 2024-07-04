@@ -6,6 +6,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -86,7 +87,7 @@ public class AdvertisementFragment extends Fragment implements   TaskRetrieveAdu
     int numberofcall;
     int num;
     ProgressDialog loading = null;
-    private Handler handler = new Handler();
+    private Handler handler = new Handler(Looper.getMainLooper());
     private Runnable delayedRunnable;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -212,7 +213,8 @@ public class AdvertisementFragment extends Fragment implements   TaskRetrieveAdu
     //Edited by Varun for QT
     public void Auth_QT() {
 
-        handler.removeCallbacks(delayedRunnable);
+//        handler.removeCallbacks(delayedRunnable);
+        UtilsGlobal.call_log_WS(getContext(), "Appear in the callQT_Token Function", "", "");
 
         if (UtilsGlobal.ImageDetalList4 != null && !UtilsGlobal.ImageDetalList4.isEmpty()) {
             UtilsGlobal.ImageDetalList4.clear();
@@ -230,6 +232,7 @@ public class AdvertisementFragment extends Fragment implements   TaskRetrieveAdu
         RequestBody body = RequestBody.create(jsonStr,
                 MediaType.parse("application/json")
         );
+        UtilsGlobal.call_log_WS(getContext(), "Send to QT QT for Token WS", "https://api.placeexchange.com/v3/token", "");
         ApiInterface apiServiceBillboard = ApiClientQT.getClient().create(ApiInterface.class);
         Call<Auth_QTModel> call1 = apiServiceBillboard.AUTH_QT_CALL(body);
         call1.enqueue(new Callback<Auth_QTModel>() {
@@ -244,6 +247,9 @@ public class AdvertisementFragment extends Fragment implements   TaskRetrieveAdu
                     auth_qt.setError_description(response.body().getError_description());
 
                     UtilsGlobal.localAuthQTlist = auth_qt;
+                    Gson gson = new Gson();
+                    String responseBodyString = gson.toJson(response.body());
+                    UtilsGlobal.call_log_WS(getContext(), "receive from QT for Token WS", "https://api.placeexchange.com/v3/token", responseBodyString);
 
                     if (response.body().getAccess_token() != null && !response.body().getAccess_token().equals("")) {
                         callgetAdunit(UtilsGlobal.store.getId() + "_"+"k1");
@@ -258,7 +264,9 @@ public class AdvertisementFragment extends Fragment implements   TaskRetrieveAdu
                 call.cancel();
 //                If there is no image then we are calling the computer perfect server and showing the images from computer perfect with the help of Industry type
 //                        setnoimage();
+                UtilsGlobal.call_log_WS(getContext(), "Receive from QT and calling Computer Perfect : 1", "https://api.placeexchange.com/v3/token", t.getMessage());
                 UtilsGlobal.iscomefrom_adrequest_Same =true;
+                UtilsGlobal.unauthorized =true;
                 callcomputerperfectimage();
                 Toast.makeText(getActivity(), "Calling computer perfect because there is no resposne in QT", Toast.LENGTH_LONG).show();
 //                        END
@@ -268,7 +276,7 @@ public class AdvertisementFragment extends Fragment implements   TaskRetrieveAdu
 
     public void callgetAdunit(String adunitname) {
 
-        handler.removeCallbacks(delayedRunnable);
+//        handler.removeCallbacks(delayedRunnable);
 
         if (UtilsGlobal.ImageDetalList4 != null && !UtilsGlobal.ImageDetalList4.isEmpty()) {
             UtilsGlobal.ImageDetalList4.clear();
@@ -277,6 +285,7 @@ public class AdvertisementFragment extends Fragment implements   TaskRetrieveAdu
         String url = null;
         //URL :- https://api.placeexchange.com/v3/orgs/00cb716a-c7f8-4f14-8244-cf510531e696/adunits
         url = ApiClient.BASE_URL_QT + UtilsGlobal.ORGS + UtilsGlobal.QT_ID + UtilsGlobal.WS_AD_UNIT + "/" + adunitname;
+        UtilsGlobal.call_log_WS(getContext(),"Send to QT for Ad_Unit verification",url,"");
         TaskRetrieveAdunit taskretrieveadunit = new TaskRetrieveAdunit(context, getContext(), auth_qt.getAccess_token());
         taskretrieveadunit.execute(url);
     }
@@ -284,59 +293,68 @@ public class AdvertisementFragment extends Fragment implements   TaskRetrieveAdu
     @Override
     public void onRetrieveAdunitResult(List<RetrieveAdunitModel> retrieveAdunitModel, boolean b) {
 
-        handler.removeCallbacks(delayedRunnable);
+//        handler.removeCallbacks(delayedRunnable);
 
-        if (b) {
+        try {
+            if (b) {
 //            If there is no image then we are calling the computer perfect server and showing the images from computer perfect with the help of Industry type
 //                        setnoimage();
-            UtilsGlobal.iscomefrom_adrequest_Same =true;
-            callcomputerperfectimage();
-            Toast.makeText(getActivity(), "Calling computer perfect because there is no resposne in QT", Toast.LENGTH_LONG).show();
+                UtilsGlobal.call_log_WS(getContext(), "Ad Unit verification is failed so calling the Computer Perfect : 2", "", "");
+
+                UtilsGlobal.iscomefrom_adrequest_Same = true;
+                callcomputerperfectimage();
+                Toast.makeText(getActivity(), "Calling computer perfect because there is no resposne in QT", Toast.LENGTH_LONG).show();
 //                        END
-        } else {
+            } else {
 
-            if (UtilsGlobal.localretrieveAdunitModelList.size() <= 0 && UtilsGlobal.localretrieveAdunitModelList.isEmpty() && UtilsGlobal.localretrieveAdunitModelList == null) {
-                UtilsGlobal.localretrieveAdunitModelList.addAll(retrieveAdunitModel);
-            }
+                if (UtilsGlobal.localretrieveAdunitModelList.size() <= 0 && UtilsGlobal.localretrieveAdunitModelList.isEmpty() && UtilsGlobal.localretrieveAdunitModelList == null) {
+                    UtilsGlobal.localretrieveAdunitModelList.addAll(retrieveAdunitModel);
+                }
 
-            for (int i = 0; i < retrieveAdunitModel.size(); i++) {
-                if (retrieveAdunitModel.get(i).getName() != null && !retrieveAdunitModel.get(i).getName().equals("")) {
-                    if (!retrieveAdunitModel.get(i).getAsset().getCapability().isVideo() && retrieveAdunitModel.get(i).getAsset().getCapability().isBanner()) {
-                        if (retrieveAdunitModel.get(i).getStatus() == 3 && retrieveAdunitModel.get(i).getStatusDisplay().equals("Live")) {
+                for (int i = 0; i < retrieveAdunitModel.size(); i++) {
+                    if (retrieveAdunitModel.get(i).getName() != null && !retrieveAdunitModel.get(i).getName().equals("")) {
+                        if (!retrieveAdunitModel.get(i).getAsset().getCapability().isVideo() && retrieveAdunitModel.get(i).getAsset().getCapability().isBanner()) {
+                            if (retrieveAdunitModel.get(i).getStatus() == 3 && retrieveAdunitModel.get(i).getStatusDisplay().equals("Live")) {
 
-                            if (UtilsGlobal.adunit_height!=0 && UtilsGlobal.adunit_width != 0){
-                                UtilsGlobal.adunit_width=0;
-                                UtilsGlobal.adunit_height =0;
-                            }
-                            if (retrieveAdunitModel.get(i).getAdFormats() != null && !retrieveAdunitModel.get(i).getAdFormats().isEmpty()) {
-                                // Check if the adFormats list is not empty
-                                UtilsGlobal.adunit_height = retrieveAdunitModel.get(i).getAdFormats().get(0).getH();
-                                UtilsGlobal.adunit_width = retrieveAdunitModel.get(i).getAdFormats().get(0).getW();
+                                if (UtilsGlobal.adunit_height != 0 && UtilsGlobal.adunit_width != 0) {
+                                    UtilsGlobal.adunit_width = 0;
+                                    UtilsGlobal.adunit_height = 0;
+                                }
+                                if (retrieveAdunitModel.get(i).getAdFormats() != null && !retrieveAdunitModel.get(i).getAdFormats().isEmpty()) {
+                                    // Check if the adFormats list is not empty
+                                    UtilsGlobal.adunit_height = retrieveAdunitModel.get(i).getAdFormats().get(0).getH();
+                                    UtilsGlobal.adunit_width = retrieveAdunitModel.get(i).getAdFormats().get(0).getW();
+                                } else {
+                                    // Handle the case where the adFormats list is empty or null
+                                    UtilsGlobal.adunit_height = retrieveAdunitModel.get(i).getSlot().getHeight();
+                                    UtilsGlobal.adunit_width = retrieveAdunitModel.get(i).getSlot().getWidth();
+                                }
+                                Log.e("", "Height: " + UtilsGlobal.adunit_height + "Width: " + UtilsGlobal.adunit_width);
+                                callgetAdRequest(retrieveAdunitModel.get(i).getName());
+                                numberofcall++;
                             } else {
-                                // Handle the case where the adFormats list is empty or null
-                                UtilsGlobal.adunit_height = retrieveAdunitModel.get(i).getSlot().getHeight();
-                                UtilsGlobal.adunit_width = retrieveAdunitModel.get(i).getSlot().getWidth();
+                                UtilsGlobal.call_log_WS(getContext(), "Ad Unit verification is failed so calling the Computer Perfect : 3", "", "");
+                                UtilsGlobal.iscomefrom_adrequest_Same = true;
+                                callcomputerperfectimage();
+                                Toast.makeText(getActivity(), "Calling computer perfect because there is no resposne in QT", Toast.LENGTH_LONG).show();
                             }
-                            Log.e("", "Height: "+UtilsGlobal.adunit_height+ "Width: "+UtilsGlobal.adunit_width );
-                            callgetAdRequest(retrieveAdunitModel.get(i).getName());
-                            numberofcall++;
-                        }else{
-                            UtilsGlobal.iscomefrom_adrequest_Same =true;
-                            callcomputerperfectimage();
-                            Toast.makeText(getActivity(), "Calling computer perfect because there is no resposne in QT", Toast.LENGTH_LONG).show();
                         }
                     }
                 }
             }
+        }catch (Exception e){
+            callcomputerperfectimage();
+            UtilsGlobal.call_log_WS(getContext(), "Ad unit Verify Catch -1", "", "");
         }
     }
 
     public void callgetAdRequest(String name) {
 
-        handler.removeCallbacks(delayedRunnable);
+//        handler.removeCallbacks(delayedRunnable);
 
         String url = null;
         url = ApiClient.BASE_URL_QT + UtilsGlobal.ORGS + UtilsGlobal.QT_ID + UtilsGlobal.WS_AD_UNIT + "/" + name + UtilsGlobal.WS_SUBMIT_AD_REQUEST;
+        UtilsGlobal.call_log_WS(getContext(),"Send to QT for getting the image",url,"");
         TaskGetAdRequest taskGetAdRequest = new TaskGetAdRequest(context, getContext(), auth_qt.getAccess_token(), name);
         taskGetAdRequest.execute(url);
     }
@@ -346,105 +364,129 @@ public class AdvertisementFragment extends Fragment implements   TaskRetrieveAdu
 
         //        Edited by Varun for when ther eis no response from QT or we don't get any Ad in return then we will show the dummy Ad
 
-        if (!UtilsGlobal.localgetAdRequestModel.isEmpty()&&UtilsGlobal.localgetAdRequestModel!=null){
-            if (UtilsGlobal.localgetAdRequestModel.get(0).getCreative().getName().equals(getAdRequestModel.get(0).getCreative().getName())) {
+        try {
+            if (!UtilsGlobal.localgetAdRequestModel.isEmpty() && UtilsGlobal.localgetAdRequestModel != null
+                    && UtilsGlobal.localgetAdRequestModel.get(0).getCreative().getName().equals(getAdRequestModel.get(0).getCreative().getName())) {
+
+                UtilsGlobal.call_log_WS(getContext(), "Both images previous and new are same form QT so calling Computer Perfect : 4", "", "");
                 UtilsGlobal.iscomefrom_adrequest_Same = true;
                 callcomputerperfectimage();
-            }
-        }else {
-
-            if (getAdRequestModel != null) {
-//            Setting the image URL and MIME type
-                if (!UtilsGlobal.localgetAdRequestModel.isEmpty() && UtilsGlobal.localgetAdRequestModel != null) {
-                    UtilsGlobal.localgetAdRequestModel.clear();
-                }
-                UtilsGlobal.localgetAdRequestModel.addAll(getAdRequestModel);
-
-                if (!UtilsGlobal.ImageDetalList3.isEmpty() && UtilsGlobal.ImageDetalList3 != null) {
-                    UtilsGlobal.ImageDetalList4.addAll(UtilsGlobal.ImageDetalList3);
-                }
-
-
-//                Calling the fucntion to display the images
-//                displayQT(UtilsGlobal.localgetAdRequestModel,ad_unit_name);
-                displayQT(UtilsGlobal.localgetAdRequestModel, ad_unit_name);
 
             } else {
 
+                if (getAdRequestModel != null) {
+//            Setting the image URL and MIME type
+                    if (!UtilsGlobal.localgetAdRequestModel.isEmpty() && UtilsGlobal.localgetAdRequestModel != null) {
+                        UtilsGlobal.localgetAdRequestModel.clear();
+                    }
+                    UtilsGlobal.localgetAdRequestModel.addAll(getAdRequestModel);
+
+                    if (!UtilsGlobal.ImageDetalList3.isEmpty() && UtilsGlobal.ImageDetalList3 != null) {
+                        UtilsGlobal.ImageDetalList4.addAll(UtilsGlobal.ImageDetalList3);
+                    }
+
+                    displayQT(UtilsGlobal.localgetAdRequestModel, ad_unit_name);
+
+                } else {
 //                Used to call when there is only 1 ad return from the API and other 2 are null then it will only show 1 ad rather than no image
-                if (UtilsGlobal.localgetAdRequestModel == null || UtilsGlobal.localgetAdRequestModel.isEmpty()) {
                     UtilsGlobal.dismissProgressBar();
 //                    If there is no image then we are calling the computer perfect server and showing the images from computer perfect with the help of Industry type
 //                        setnoimage();
-                    UtilsGlobal.iscomefrom_adrequest_Same =true;
+                    UtilsGlobal.call_log_WS(getContext(), "Null response in QT Ad request so calling computer perfect : 5", "", "");
+                    UtilsGlobal.iscomefrom_adrequest_Same = true;
                     callcomputerperfectimage();
                     Toast.makeText(getActivity(), "Calling computer perfect because there is no resposne in QT", Toast.LENGTH_LONG).show();
 //                        END
-
-                } else {
-//                    Calling the fucntion to display the images
-                    displayQT(UtilsGlobal.localgetAdRequestModel, ad_unit_name);
                 }
-
-//                END
             }
+        } catch (Exception e) {
+            if (loading != null && loading.isShowing()) {
+                loading.dismiss();
+            }
+            UtilsGlobal.iscomefrom_adrequest_Same = true;
+            callcomputerperfectimage();
+            UtilsGlobal.call_log_WS(getContext(), "Gone into Ad Request API Catch -2", "", "");
         }
     }
 
     private void callcomputerperfectimage() {
 
         Log.e("", "callcomputerperfectimage: "+UtilsGlobal.Computerperfect.size() );
-        if (UtilsGlobal.Computerperfect!=null&&!UtilsGlobal.Computerperfect.isEmpty()){
-            Log.e("", "2 ");
-            UtilsGlobal.iscomefrom_adrequest_Same=false;
-            int selectedImageIndex = UtilsGlobal.count;
-            if (selectedImageIndex >= UtilsGlobal.Computerperfect.size()){
-                UtilsGlobal.count = 0;
-                selectedImageIndex = UtilsGlobal.count;
-            }
-            UtilsGlobal.count++;
-            myCustomPagerAdapter = new AdvertiseImageSliderAdapter(getActivity(), Collections.singletonList(UtilsGlobal.Computerperfect.get(selectedImageIndex)));
-            binding.viewPage.setAdapter(myCustomPagerAdapter);
-            Log.e("", "3 ");
-
-            // Delay in milliseconds (15 seconds in this case)
-            long delayMillis;
-
-//            if (UtilsGlobal.localgetAdRequestModel != null && !UtilsGlobal.localgetAdRequestModel.isEmpty()) {
-//                delayMillis = (long) (UtilsGlobal.localgetAdRequestModel.get(0).getCreative().getDuration() * 1000);
-//            }else{
-                delayMillis = (long) (15 * 1000);
-//            }
-
-
-            delayedRunnable = new Runnable() {
-                @Override
-                public void run() {
-                    if (UtilsGlobal.localgetAdRequestModel != null && !UtilsGlobal.localgetAdRequestModel.isEmpty()) {
-                        UtilsGlobal.localgetAdRequestModel.clear();
-                    }
-                    Toast.makeText(getActivity(), "Calling AGAIN", Toast.LENGTH_SHORT).show();
-                    if (UtilsGlobal.unauthorized){
-                        UtilsGlobal.unauthorized = false;
-                        Auth_QT();
-                    }else {
-                        callgetAdunit(UtilsGlobal.store.getId() + "_" + "k1");
-                    }
+        try {
+            if (UtilsGlobal.Computerperfect != null && !UtilsGlobal.Computerperfect.isEmpty()) {
+                Log.e("", "2 ");
+                UtilsGlobal.iscomefrom_adrequest_Same = false;
+                int selectedImageIndex = UtilsGlobal.count;
+                if (selectedImageIndex >= UtilsGlobal.Computerperfect.size()) {
+                    UtilsGlobal.count = 0;
+                    selectedImageIndex = UtilsGlobal.count;
                 }
-            };
-            handler.postDelayed(delayedRunnable, delayMillis);
+                UtilsGlobal.count++;
+                myCustomPagerAdapter = new AdvertiseImageSliderAdapter(getActivity(), Collections.singletonList(UtilsGlobal.Computerperfect.get(selectedImageIndex)));
+                binding.viewPage.setAdapter(myCustomPagerAdapter);
+                Log.e("", "3 ");
 
-        }
-        else{
-            Log.e("", "4 ");
-            callImagesWs();
+                // Delay in milliseconds (15 seconds in this case)
+                long delayMillis;
+                delayMillis = (long) (15 * 1000);
+
+                if (handler == null) {
+                    handler = new Handler(Looper.getMainLooper());
+                }
+
+                if (delayedRunnable!=null){
+                    handler.removeCallbacks(delayedRunnable);
+                    delayedRunnable=null;
+                }
+
+                synchronized (this) {
+                    UtilsGlobal.call_log_WS(getContext(),"Another call will be after 15 sec","","");
+                    delayedRunnable = new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                UtilsGlobal.call_log_WS(getContext(),"Calling The Delay Code Again","","");
+                                if (UtilsGlobal.localgetAdRequestModel != null && !UtilsGlobal.localgetAdRequestModel.isEmpty()) {
+                                    UtilsGlobal.localgetAdRequestModel.clear();
+                                }
+                                Toast.makeText(getActivity(), "Calling AGAIN", Toast.LENGTH_SHORT).show();
+                                if (UtilsGlobal.unauthorized) {
+                                    UtilsGlobal.unauthorized = false;
+                                    Auth_QT();
+                                } else {
+                                    callgetAdunit(UtilsGlobal.store.getId() + "_" + "k1");
+                                }
+                            }catch (Exception e){
+                                e.printStackTrace();
+                                String s1 = "Delay Code catch and there is Some Error";
+                                callcomputerperfectimage();
+                                UtilsGlobal.call_log_WS(getContext(),s1,e.toString(), "");
+
+                            }
+                        }
+                    };
+                    handler.postDelayed(delayedRunnable, delayMillis);
+
+                }
+            } else {
+                Log.e("", "4 ");
+                callImagesWs();
+            }
+        }catch (Exception e) {
+            Log.e("TAG", "Exception in callcomputerperfectimage: " + e.getMessage(), e);
+            if (delayedRunnable!=null){
+                handler.removeCallbacks(delayedRunnable);
+                delayedRunnable = null;
+            }
+            callcomputerperfectimage();
+            UtilsGlobal.call_log_WS(getContext(), "Computer Perfect Catch ", e.toString(), "");
         }
     }
 
     private void displayQT(List<GetAdRequestModel> localgetAdRequestModel, String ad_unit_name) {
 
-            if (!UtilsGlobal.ImageDetalList4.isEmpty() && UtilsGlobal.ImageDetalList4 != null) {
-
+            if (UtilsGlobal.ImageDetalList4 != null && !UtilsGlobal.ImageDetalList4.isEmpty()) {
+                UtilsGlobal.call_log_WS(getContext(),"Going For Adapter 4","","");
                 Log.e("", "IMAGEDETAILLIST4: "+UtilsGlobal.ImageDetalList4.size());
                 myCustomPagerAdapter = new AdvertiseImageSliderAdapter(getActivity(), UtilsGlobal.ImageDetalList4);
                 binding.viewPage.setAdapter(myCustomPagerAdapter);
@@ -452,6 +494,7 @@ public class AdvertisementFragment extends Fragment implements   TaskRetrieveAdu
                 binding.viewPage.setCurrentItem(0);
 //                binding.viewPage.startAutoScroll();
             } else {
+                UtilsGlobal.call_log_WS(getContext(),"Null response in QT Ad request so calling computer perfect : 6","","");
                 UtilsGlobal.dismissProgressBar();
 //                If there is no image then we are calling the computer perfect server and showing the images from computer perfect with the help of Industry type
 //                        setnoimage();
@@ -479,6 +522,7 @@ public class AdvertisementFragment extends Fragment implements   TaskRetrieveAdu
 
         String url = null;
         url = ApiClient.BASE_URL_QT + UtilsGlobal.ORGS + UtilsGlobal.QT_ID + UtilsGlobal.WS_AD_UNIT + "/" + ad_unit_name + UtilsGlobal.WS_PLAYS;
+        UtilsGlobal.call_log_WS(getContext(),"Send to QT",url,"");
         TaskPlay taskPlay = new TaskPlay(scontext, context, getContext(), auth_qt.getAccess_token(), ts , min_duration);
         taskPlay.execute(url);
 
@@ -489,6 +533,10 @@ public class AdvertisementFragment extends Fragment implements   TaskRetrieveAdu
 
         long delayMillis = (long) (min_duration * 1000);
 
+        if (delayedRunnable!=null){
+            handler.removeCallbacks(delayedRunnable);
+            delayedRunnable=null;
+        }
         delayedRunnable = new Runnable() {
             @Override
             public void run() {
@@ -998,6 +1046,7 @@ public class AdvertisementFragment extends Fragment implements   TaskRetrieveAdu
 //            END
 
         String Urlban = ApiClient.WS_BASE_URL + ApiClient.GETPOLE_IMAGES_DETAIL + UtilsGlobal.store.getId() + "/" + UtilsGlobal.type;
+        UtilsGlobal.call_log_WS(getContext(),"Sending Request to Computer Perfect Server",Urlban,"");;
         TaskImages taskImages = new TaskImages((TaskImages.TaskImagesEvent) context, getContext());
         taskImages.execute(Urlban);
 
@@ -1008,6 +1057,7 @@ public class AdvertisementFragment extends Fragment implements   TaskRetrieveAdu
 
         if (UtilsGlobal.iscomefrom_adrequest_Same){
             Log.e("", "1");
+            UtilsGlobal.call_log_WS(getContext(),"Going Back to Computer perfect function because to show the images","","");
             callcomputerperfectimage();
         }else {
             if (!b) {

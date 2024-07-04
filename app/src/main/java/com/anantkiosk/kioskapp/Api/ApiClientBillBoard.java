@@ -2,6 +2,7 @@ package com.anantkiosk.kioskapp.Api;
 
 import android.os.Build;
 
+import com.anantkiosk.kioskapp.Utils.UtilsGlobal;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -41,16 +42,16 @@ public class ApiClientBillBoard {
                     HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
                     interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
                     okHttpClient = new OkHttpClient.Builder().addNetworkInterceptor(interceptor)
-                            .connectTimeout(2, TimeUnit.MINUTES)
-                            .writeTimeout(2, TimeUnit.MINUTES)
-                            .readTimeout(2, TimeUnit.MINUTES)
+                            .connectTimeout(15, TimeUnit.SECONDS)
+                            .writeTimeout(15, TimeUnit.SECONDS)
+                            .readTimeout(15, TimeUnit.SECONDS)
                             .build();
                 }
             } else {
                 okHttpClient = getUnsafeOkHttpClient();
             }
             retrofit = new Retrofit.Builder()
-                    .baseUrl(ApiClient.BASE_URL_BLIP)
+                    .baseUrl(ApiClient.WebStoreURL)
                     .client(okHttpClient)
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .build();
@@ -59,7 +60,7 @@ public class ApiClientBillBoard {
                     .setLenient()
                     .create();
             retrofit = new Retrofit.Builder()
-                    .baseUrl(ApiClient.BASE_URL_BLIP)
+                    .baseUrl(ApiClient.WebStoreURL)
                     .build();
 
         }
