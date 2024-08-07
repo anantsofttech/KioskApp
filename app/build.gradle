@@ -11,8 +11,8 @@ android {
         applicationId "com.anantkiosk.kioskapp"
         minSdkVersion 19
         targetSdkVersion 33
-        versionCode 58
-        versionName "LightningKioskV1.58"
+        versionCode 59
+        versionName "LightningKioskV1.59"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
