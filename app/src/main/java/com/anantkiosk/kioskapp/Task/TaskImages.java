@@ -70,6 +70,7 @@ public class TaskImages extends AsyncTask<String, Void, String> {
             try {
                 UtilsGlobal.doNetworkProcessGet(strings[0], responseStrBuilder);
                 String response = responseStrBuilder.toString();
+                Log.e("tracking", "onGetImagesDetailsResult: 7"+response);
                 if (response != null) {
                     JSONArray jsonArray = new JSONArray(response);
                     countTotal = 0;
@@ -100,20 +101,11 @@ public class TaskImages extends AsyncTask<String, Void, String> {
                         }
                     }
                 }
+                Log.e("tracking", "onGetImagesDetailsResult: 6");
                 UtilsGlobal.call_log_WS(context, "Receive Response from Computer Perfect Server", strings[0], response);
                 return response;
 
-            } catch (JsonParseException e) {
-                e.printStackTrace();
-            } catch (JsonGenerationException e) {
-                e.printStackTrace();
-            } catch (SocketTimeoutException e) {
-                e.printStackTrace();
-            } catch (JsonMappingException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
+            } catch (IOException | JSONException e) {
                 e.printStackTrace();
             }
             retry = true;
@@ -132,6 +124,7 @@ public class TaskImages extends AsyncTask<String, Void, String> {
                     //Log.d("kaveriImage","Stop loader");
                     loading.dismiss();
                 }
+                Log.e("tracking", "onGetImagesDetailsResult: 8");
                     taskImagesEvent.onGetImagesDetailsResult(UtilsGlobal.ImageDetalList,true);
 
             }else{
@@ -139,6 +132,7 @@ public class TaskImages extends AsyncTask<String, Void, String> {
                     //Log.d("kaveriImage","Stop loader");
                     loading.dismiss();
                 }
+                Log.e("tracking", "onGetImagesDetailsResult: 9");
                     taskImagesEvent.onGetImagesDetailsResult(UtilsGlobal.ImageDetalList,false);
 
             }

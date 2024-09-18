@@ -561,10 +561,12 @@ public class AdvertisementFragment extends Fragment implements   TaskRetrieveAdu
         UtilsGlobal.ImageDetalList.add(imagesDetailModel);
 
         if (binding != null && UtilsGlobal.ImageDetalList != null) {
+            Log.e("tracking", "onGetImagesDetailsResult: 2");
             myCustomPagerAdapter = new AdvertiseImageSliderAdapter(getActivity(), UtilsGlobal.ImageDetalList);
             binding.viewPage.setAdapter(myCustomPagerAdapter);
             binding.viewPage.setOffscreenPageLimit(UtilsGlobal.ImageDetalList.size());
         } else {
+            Log.e("tracking", "onGetImagesDetailsResult: 3");
             // Handle the case when binding or UtilsGlobal.ImageDetalList is null
             // Log an error or perform alternative actions
         }
@@ -1054,11 +1056,13 @@ public class AdvertisementFragment extends Fragment implements   TaskRetrieveAdu
 
     @Override
     public void onGetImagesDetailsResult(List<AdvSign> ImageDetalList, boolean b) {
+        Log.e("tracking", "onGetImagesDetailsResult: 5");
 
-        if (UtilsGlobal.iscomefrom_adrequest_Same){
+        if (UtilsGlobal.iscomefrom_adrequest_Same && !b){
             Log.e("", "1");
             UtilsGlobal.call_log_WS(getContext(),"Going Back to Computer perfect function because to show the images","","");
             callcomputerperfectimage();
+            Log.e("tracking", "onGetImagesDetailsResult: 10");
         }else {
             if (!b) {
                 Log.e("", "onGetImagesDetailsResult: " + UtilsGlobal.ImageDetalList.size());
@@ -1068,7 +1072,8 @@ public class AdvertisementFragment extends Fragment implements   TaskRetrieveAdu
                 binding.viewPage.setCurrentItem(0);
                 binding.viewPage.startAutoScroll();
             } else {
-//                setDummyAdvertisements();
+//                setDummyAdvertisements();\
+                Log.e("tracking", "onGetImagesDetailsResult: 1");
                 setnoimage();
             }
         }

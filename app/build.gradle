@@ -79,7 +79,7 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:28.4.2')
     implementation 'com.github.demoNo:AutoScrollViewPager:v1.0.2'
     implementation 'com.google.firebase:firebase-firestore:24.0.0'
-    implementation 'com.shuhart.stepview:stepview:1.5.1'
+//    implementation 'com.shuhart.stepview:stepview:1.5.1'
     implementation 'org.greenrobot:eventbus:3.2.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'

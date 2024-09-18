@@ -96,7 +96,9 @@ public class AdvertiseImageSliderAdapter extends InfinitePagerAdapter {
                                     imageView.setImageDrawable(circularBitmapDrawable);
                                 }
                             });
-                }else if(url.contains("no image")){
+                }
+                else if(url.contains("no image")){
+                    Log.e("tracking", "onGetImagesDetailsResult: 4");
                     Glide.with(context)
                             .asBitmap()
                             .load(R.drawable.noproductimageavailable)

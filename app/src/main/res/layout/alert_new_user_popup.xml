@@ -22,9 +22,40 @@
         android:orientation="vertical">
 
 
-        <com.shuhart.stepview.StepView
+<!--        <com.shuhart.stepview.StepView-->
+<!--            android:id="@+id/step_view"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="12dp"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_marginRight="12dp"-->
+<!--            android:paddingLeft="7dp"-->
+<!--            android:paddingTop="12dp"-->
+<!--            android:paddingRight="7dp"-->
+<!--            android:paddingBottom="12dp"-->
+<!--            app:sv_animationType="All"-->
+<!--            app:sv_doneCircleColor="@color/clr_loyalty"-->
+<!--            app:sv_doneCircleRadius="36dp"-->
+<!--            app:sv_doneStepLineColor="@color/clr_loyalty"-->
+<!--            app:sv_doneStepMarkColor="@color/white"-->
+<!--            app:sv_doneTextColor="@color/clr_loyalty"-->
+<!--            app:sv_nextStepCircleColor="#90FFA858"-->
+<!--            app:sv_nextStepCircleEnabled="true"-->
+<!--            app:sv_nextStepLineColor="#90FFA858"-->
+<!--            app:sv_nextTextColor="@color/black"-->
+<!--            app:sv_selectedCircleColor="@color/clr_loyalty"-->
+<!--            app:sv_selectedCircleRadius="36dp"-->
+<!--            app:sv_selectedStepNumberColor="@color/white"-->
+<!--            app:sv_selectedTextColor="@color/clr_loyalty"-->
+<!--            app:sv_stepLineWidth="5dp"-->
+<!--            app:sv_stepNumberTextSize="26sp"-->
+<!--            app:sv_stepViewStyle="@style/StepView"-->
+<!--            app:sv_stepsNumber="3"-->
+<!--            app:sv_textSize="26sp" />-->
+
+        <ImageView
             android:id="@+id/step_view"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="8dp"
@@ -33,25 +64,10 @@
             android:paddingTop="12dp"
             android:paddingRight="7dp"
             android:paddingBottom="12dp"
-            app:sv_animationType="All"
-            app:sv_doneCircleColor="@color/clr_loyalty"
-            app:sv_doneCircleRadius="36dp"
-            app:sv_doneStepLineColor="@color/clr_loyalty"
-            app:sv_doneStepMarkColor="@color/white"
-            app:sv_doneTextColor="@color/clr_loyalty"
-            app:sv_nextStepCircleColor="#90FFA858"
-            app:sv_nextStepCircleEnabled="true"
-            app:sv_nextStepLineColor="#90FFA858"
-            app:sv_nextTextColor="@color/black"
-            app:sv_selectedCircleColor="@color/clr_loyalty"
-            app:sv_selectedCircleRadius="36dp"
-            app:sv_selectedStepNumberColor="@color/white"
-            app:sv_selectedTextColor="@color/clr_loyalty"
-            app:sv_stepLineWidth="5dp"
-            app:sv_stepNumberTextSize="26sp"
-            app:sv_stepViewStyle="@style/StepView"
-            app:sv_stepsNumber="3"
-            app:sv_textSize="26sp" />
+            android:src="@drawable/step_view_1"
+            android:scaleType="fitXY">
+
+        </ImageView>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textinput1"

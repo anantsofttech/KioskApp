@@ -37,9 +37,10 @@ import com.anantkiosk.kioskapp.MainActivity;
 import com.anantkiosk.kioskapp.Model.GiftCardModel;
 import com.anantkiosk.kioskapp.Model.Result;
 import com.anantkiosk.kioskapp.Model.User;
+import com.anantkiosk.kioskapp.R;
 import com.anantkiosk.kioskapp.Utils.UtilsGlobal;
 import com.anantkiosk.kioskapp.databinding.ActivityLoyaltyRewardsBinding;
-import com.shuhart.stepview.StepView;
+//import com.shuhart.stepview.StepView;
 
 import java.util.ArrayList;
 
@@ -111,86 +112,86 @@ public class LoyaltyRewardsFragment extends Fragment {
                 return false;
             }
         });
-        binding.alertNewPopup.stepView.getState()
-                .steps(new ArrayList<String>() {{
-                    add("Step 1: First Name");
-                    add("Step 2: Last Name");
-                    add("Final Step: Email");
-                }})
-                // You should specify only steps number or steps array of strings.
-                // In case you specify both steps array is chosen.
-                .stepsNumber(3)
-                // other state methods are equal to the corresponding xml attributes
-                .commit();
-        binding.alertNewPopup.stepView.setOnStepClickListener(new StepView.OnStepClickListener() {
-            @Override
-            public void onStepClick(int step1) {
-               /* step = step1;
-                binding.alertNewPopup.stepView.go(step1, true);
-                enableDisableSteps();*/
-                if (step1 > step) {
-                    if (step == 0) {
-                        if (binding.alertNewPopup.edtfirstname.getText().toString().trim().length() > 0) {
-                            if (binding.alertNewPopup.edtfirstname.getText().toString().trim().length() >= 3) {
-                                step++;
-                                binding.alertNewPopup.btnjoinprev.setEnabled(true);
-                                binding.alertNewPopup.card1.setCardElevation(7);
-                                binding.alertNewPopup.stepView.go(step, true);
-                                enableDisableSteps();
-                            } else {
-                                binding.alertNewPopup.txtnodata.setVisibility(View.VISIBLE);
-                                binding.alertNewPopup.txtnodata.setText("First Name length should greater than 2!");
-                            }
-                        } else {
-                            binding.alertNewPopup.txtnodata.setVisibility(View.VISIBLE);
-                            binding.alertNewPopup.txtnodata.setText("Please enter your first name!");
-                        }
-                    } else if (step == 1) {
-                        if (binding.alertNewPopup.edtlastname.getText().toString().trim().length() > 0) {
-                            if (binding.alertNewPopup.edtlastname.getText().toString().trim().length() >= 3) {
-                                step++;
-                                binding.alertNewPopup.btnjoinprev.setEnabled(true);
-                                binding.alertNewPopup.card1.setCardElevation(7);
-                                binding.alertNewPopup.stepView.go(step, true);
-                                enableDisableSteps();
-                            } else {
-                                binding.alertNewPopup.txtnodata.setVisibility(View.VISIBLE);
-                                binding.alertNewPopup.txtnodata.setText("Last Name length should greater than 2!");
-                            }
-                        } else {
-                            binding.alertNewPopup.txtnodata.setVisibility(View.VISIBLE);
-                            binding.alertNewPopup.txtnodata.setText("Please enter your last name!");
-                        }
-                    } else if (step == 2) {
-                        binding.alertNewPopup.btnjoinprev.setEnabled(true);
-                        binding.alertNewPopup.card1.setCardElevation(7);
-                    } else {
-                        step++;
-                        binding.alertNewPopup.btnjoinprev.setEnabled(true);
-                        binding.alertNewPopup.card1.setCardElevation(7);
-                        binding.alertNewPopup.stepView.go(step, true);
-                        enableDisableSteps();
-                    }
-
-                } else {
-                    binding.alertNewPopup.btnjoinnext.setEnabled(true);
-                    binding.alertNewPopup.card2.setCardElevation(7);
-                    binding.alertNewPopup.txtnodata.setVisibility(View.INVISIBLE);
-                    binding.alertNewPopup.btnjoinnext.setText("Next");
-                    if (step == 1) {
-                        binding.alertNewPopup.btnjoinprev.setEnabled(false);
-                        binding.alertNewPopup.card1.setCardElevation(0);
-                    }
-                    if (step == 0) {
-                        //ignore
-                    } else {
-                        step--;
-                    }
-                    binding.alertNewPopup.stepView.go(step, true);
-                    enableDisableSteps();
-                }
-            }
-        });
+//        binding.alertNewPopup.stepView.getState()
+//                .steps(new ArrayList<String>() {{
+//                    add("Step 1: First Name");
+//                    add("Step 2: Last Name");
+//                    add("Final Step: Email");
+//                }})
+//                // You should specify only steps number or steps array of strings.
+//                // In case you specify both steps array is chosen.
+//                .stepsNumber(3)
+//                // other state methods are equal to the corresponding xml attributes
+//                .commit();
+//        binding.alertNewPopup.stepView.setOnStepClickListener(new StepView.OnStepClickListener() {
+//            @Override
+//            public void onStepClick(int step1) {
+//               /* step = step1;
+//                binding.alertNewPopup.stepView.go(step1, true);
+//                enableDisableSteps();*/
+//                if (step1 > step) {
+//                    if (step == 0) {
+//                        if (binding.alertNewPopup.edtfirstname.getText().toString().trim().length() > 0) {
+//                            if (binding.alertNewPopup.edtfirstname.getText().toString().trim().length() >= 3) {
+//                                step++;
+//                                binding.alertNewPopup.btnjoinprev.setEnabled(true);
+//                                binding.alertNewPopup.card1.setCardElevation(7);
+//                                binding.alertNewPopup.stepView.go(step, true);
+//                                enableDisableSteps();
+//                            } else {
+//                                binding.alertNewPopup.txtnodata.setVisibility(View.VISIBLE);
+//                                binding.alertNewPopup.txtnodata.setText("First Name length should greater than 2!");
+//                            }
+//                        } else {
+//                            binding.alertNewPopup.txtnodata.setVisibility(View.VISIBLE);
+//                            binding.alertNewPopup.txtnodata.setText("Please enter your first name!");
+//                        }
+//                    } else if (step == 1) {
+//                        if (binding.alertNewPopup.edtlastname.getText().toString().trim().length() > 0) {
+//                            if (binding.alertNewPopup.edtlastname.getText().toString().trim().length() >= 3) {
+//                                step++;
+//                                binding.alertNewPopup.btnjoinprev.setEnabled(true);
+//                                binding.alertNewPopup.card1.setCardElevation(7);
+//                                binding.alertNewPopup.stepView.go(step, true);
+//                                enableDisableSteps();
+//                            } else {
+//                                binding.alertNewPopup.txtnodata.setVisibility(View.VISIBLE);
+//                                binding.alertNewPopup.txtnodata.setText("Last Name length should greater than 2!");
+//                            }
+//                        } else {
+//                            binding.alertNewPopup.txtnodata.setVisibility(View.VISIBLE);
+//                            binding.alertNewPopup.txtnodata.setText("Please enter your last name!");
+//                        }
+//                    } else if (step == 2) {
+//                        binding.alertNewPopup.btnjoinprev.setEnabled(true);
+//                        binding.alertNewPopup.card1.setCardElevation(7);
+//                    } else {
+//                        step++;
+//                        binding.alertNewPopup.btnjoinprev.setEnabled(true);
+//                        binding.alertNewPopup.card1.setCardElevation(7);
+//                        binding.alertNewPopup.stepView.go(step, true);
+//                        enableDisableSteps();
+//                    }
+//
+//                } else {
+//                    binding.alertNewPopup.btnjoinnext.setEnabled(true);
+//                    binding.alertNewPopup.card2.setCardElevation(7);
+//                    binding.alertNewPopup.txtnodata.setVisibility(View.INVISIBLE);
+//                    binding.alertNewPopup.btnjoinnext.setText("Next");
+//                    if (step == 1) {
+//                        binding.alertNewPopup.btnjoinprev.setEnabled(false);
+//                        binding.alertNewPopup.card1.setCardElevation(0);
+//                    }
+//                    if (step == 0) {
+//                        //ignore
+//                    } else {
+//                        step--;
+//                    }
+//                    binding.alertNewPopup.stepView.go(step, true);
+//                    enableDisableSteps();
+//                }
+//            }
+//        });
         binding.alertNewPopup.btnjoinprev.setEnabled(false);
         binding.alertNewPopup.card1.setCardElevation(0);
         binding.alertsuccess.btnnext.setOnClickListener(new View.OnClickListener() {
@@ -252,7 +253,7 @@ public class LoyaltyRewardsFragment extends Fragment {
                                 step++;
                                 binding.alertNewPopup.btnjoinprev.setEnabled(true);
                                 binding.alertNewPopup.card1.setCardElevation(7);
-                                binding.alertNewPopup.stepView.go(step, true);
+//                                binding.alertNewPopup.stepView.go(step, true);
                                 enableDisableSteps();
                             } else {
                                 binding.alertNewPopup.txtnodata.setVisibility(View.VISIBLE);
@@ -268,7 +269,7 @@ public class LoyaltyRewardsFragment extends Fragment {
                                 step++;
                                 binding.alertNewPopup.btnjoinprev.setEnabled(true);
                                 binding.alertNewPopup.card1.setCardElevation(7);
-                                binding.alertNewPopup.stepView.go(step, true);
+//                                binding.alertNewPopup.stepView.go(step, true);
                                 enableDisableSteps();
                             } else {
                                 binding.alertNewPopup.txtnodata.setVisibility(View.VISIBLE);
@@ -285,7 +286,7 @@ public class LoyaltyRewardsFragment extends Fragment {
                         step++;
                         binding.alertNewPopup.btnjoinprev.setEnabled(true);
                         binding.alertNewPopup.card1.setCardElevation(7);
-                        binding.alertNewPopup.stepView.go(step, true);
+//                        binding.alertNewPopup.stepView.go(step, true);
                         enableDisableSteps();
                     }
 
@@ -315,7 +316,7 @@ public class LoyaltyRewardsFragment extends Fragment {
                 } else {
                     step--;
                 }
-                binding.alertNewPopup.stepView.go(step, true);
+//                binding.alertNewPopup.stepView.go(step, true);
                 enableDisableSteps();
             }
         });
@@ -847,7 +848,7 @@ public class LoyaltyRewardsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 step = 0;
-                binding.alertNewPopup.stepView.go(0, true);
+//                binding.alertNewPopup.stepView.go(0, true);
                 binding.llpopup.setVisibility(View.GONE);
                 binding.alertNewPopup.btnjoinnext.setText("Next");
                 binding.alertNewPopup.btnjoinnext.setEnabled(true);
@@ -886,6 +887,8 @@ public class LoyaltyRewardsFragment extends Fragment {
             binding.alertNewPopup.edtfirstname.requestFocus();
             ((InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE)).toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
             binding.alertNewPopup.textinput1.setVisibility(View.VISIBLE);
+            binding.alertNewPopup.stepView.setVisibility(View.VISIBLE);
+            binding.alertNewPopup.stepView.setImageDrawable(getResources().getDrawable(R.drawable.step_view_1));
             binding.alertNewPopup.textinput2.setVisibility(View.GONE);
             binding.alertNewPopup.textinput4.setVisibility(View.GONE);
         } else if (step == 1) {
@@ -893,6 +896,8 @@ public class LoyaltyRewardsFragment extends Fragment {
             binding.alertNewPopup.edtlastname.requestFocus();
             binding.alertNewPopup.textinput1.setVisibility(View.GONE);
             binding.alertNewPopup.textinput2.setVisibility(View.VISIBLE);
+            binding.alertNewPopup.stepView.setVisibility(View.VISIBLE);
+            binding.alertNewPopup.stepView.setImageDrawable(getResources().getDrawable(R.drawable.step_view_2));
             binding.alertNewPopup.textinput4.setVisibility(View.GONE);
         } else if (step == 2) {
             ((InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE)).toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
@@ -900,6 +905,8 @@ public class LoyaltyRewardsFragment extends Fragment {
             binding.alertNewPopup.textinput1.setVisibility(View.GONE);
             binding.alertNewPopup.textinput2.setVisibility(View.GONE);
             binding.alertNewPopup.textinput4.setVisibility(View.VISIBLE);
+            binding.alertNewPopup.stepView.setVisibility(View.VISIBLE);
+            binding.alertNewPopup.stepView.setImageDrawable(getResources().getDrawable(R.drawable.step_view_3));
             if (binding.alertNewPopup.edtemailid.getText().toString().length() > 0) {
                 binding.alertNewPopup.btnjoinnext.setEnabled(true);
                 binding.alertNewPopup.card2.setCardElevation(7);

@@ -480,8 +480,9 @@ public class UtilsGlobal {
             }
             URL url = new URL(request_str);
             connection = (HttpURLConnection) url.openConnection();
+            connection.setConnectTimeout(5000);
+            connection.setReadTimeout(5000);
             connection.connect();
-            connection.setConnectTimeout(1000);
             InputStream stream = connection.getInputStream();
             reader = new BufferedReader(new InputStreamReader(stream));
             StringBuffer buffer = new StringBuffer();
@@ -495,15 +496,15 @@ public class UtilsGlobal {
                 try {
                     reader.close();
                 } catch (IOException e) {
+                    // Log or handle the exception
                     e.printStackTrace();
                 }
             }
-            if (connection != null) {
-                connection.disconnect();
-            }
+            if (connection != null) connection.disconnect();
         }
 
     }
+
 
     public static String performNetworkRequest(String string, String authToken) {
 
