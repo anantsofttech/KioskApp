@@ -194,6 +194,7 @@ public class GeneralSystemSetupQuestionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 UtilsGlobal.saveStore(GeneralSystemSetupQuestionActivity.this, null);
+                Log.d("", "Varun: 1");
                 Intent intent = new Intent(GeneralSystemSetupQuestionActivity.this, LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
@@ -530,6 +531,7 @@ public class GeneralSystemSetupQuestionActivity extends AppCompatActivity {
                         binding.btnnext.setText("Continue");
                     } else {
                         UtilsGlobal.saveStore(GeneralSystemSetupQuestionActivity.this, UtilsGlobal.store);
+                        Log.d("", "Varun: 2");
                         Intent intent = new Intent(GeneralSystemSetupQuestionActivity.this, MainActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
@@ -551,6 +553,7 @@ public class GeneralSystemSetupQuestionActivity extends AppCompatActivity {
                             }
                         } else {
                             UtilsGlobal.saveStore(GeneralSystemSetupQuestionActivity.this, UtilsGlobal.store);
+                            Log.d("", "Varun: 3");
                             Intent intent = new Intent(GeneralSystemSetupQuestionActivity.this, MainActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                     Intent.FLAG_ACTIVITY_CLEAR_TASK |

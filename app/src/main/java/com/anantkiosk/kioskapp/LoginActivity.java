@@ -254,6 +254,7 @@ public class LoginActivity extends AppCompatActivity {
         call1.enqueue(new Callback<ArrayList<Store>>() {
             @Override
             public void onResponse(Call<ArrayList<Store>> call, Response<ArrayList<Store>> response) {
+                Log.e("1",response.toString());
                 if (response.body() != null) {
                     if (response.body().size() > 0) {
                         if (!response.body().get(0).getKioskControlledBy().equalsIgnoreCase("not enabled") &&
@@ -348,6 +349,7 @@ public class LoginActivity extends AppCompatActivity {
         call1.enqueue(new Callback<Result>() {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
+                Log.e("2",response.toString());
                 if (response.body() != null) {
                     if (isRsend) {
                         Toast.makeText(LoginActivity.this, "We have send a code to registered mobile number!", Toast.LENGTH_SHORT).show();
@@ -406,6 +408,7 @@ public class LoginActivity extends AppCompatActivity {
         call1.enqueue(new Callback<Result>() {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
+                Log.e("3",response.toString());
                 if (response.body() != null) {
                     if (response.body().getResult() != null) {
                         if (response.body().getResult().length() > 0) {
@@ -473,6 +476,7 @@ public class LoginActivity extends AppCompatActivity {
         call1.enqueue(new Callback<ArrayList<Result>>() {
             @Override
             public void onResponse(Call<ArrayList<Result>> call, Response<ArrayList<Result>> response) {
+                Log.e("4",response.toString());
                 if (response.body() != null) {
                     if (!response.body().get(0).getResult().equalsIgnoreCase("null")) {
                         if (response.body().get(0).getResult().trim().length() > 0) {
@@ -512,6 +516,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<ArrayList<Result>> call, Throwable t) {
                 call.cancel();
                 callAndroidTabletValidationForObj(storeNum);
+                Log.d("Login Activity", "onFailure: ");
             }
         });
     }
@@ -522,6 +527,7 @@ public class LoginActivity extends AppCompatActivity {
         call1.enqueue(new Callback<Result>() {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
+                Log.e("5",response.toString());
                 if (response.body() != null) {
                     if (!response.body().getResult().equalsIgnoreCase("null")) {
                         if (response.body().getResult().trim().length() > 0) {
@@ -580,6 +586,7 @@ public class LoginActivity extends AppCompatActivity {
         call1.enqueue(new Callback<ArrayList<Store>>() {
             @Override
             public void onResponse(Call<ArrayList<Store>> call, Response<ArrayList<Store>> response) {
+                Log.e("6",response.toString());
                 if (response.body() != null) {
                     if (response.body().size() > 0) {
                         UtilsGlobal.store.setLoyaltyEnable(false);
@@ -788,6 +795,7 @@ public class LoginActivity extends AppCompatActivity {
         call1.enqueue(new Callback<Result>() {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
+                Log.e("7",response.toString());
                 if (response.body() != null) {
                     if (!(response.body().getResult().toLowerCase().contains("data not found") || response.body().getResult().toLowerCase().contains("not activated"))) {
                         if (!response.body().getResult().toLowerCase().contains("internal")) {

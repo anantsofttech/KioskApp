@@ -5,14 +5,14 @@ plugins {
 }
 
 android {
-    //Android_Lightning_kioskV1_34
+    //Lighting_KioskV1.60
     compileSdkVersion 33
     defaultConfig {
         applicationId "com.anantkiosk.kioskapp"
         minSdkVersion 19
         targetSdkVersion 33
-        versionCode 59
-        versionName "LightningKioskV1.59"
+        versionCode 60
+        versionName "LightningKioskV1.60"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

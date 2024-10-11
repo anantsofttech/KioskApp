@@ -384,6 +384,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ArrayList<Result>> call, Throwable t) {
                 call.cancel();
+                Log.d("Main Activity", "onFailure: ");
                 //send in login
             }
         });

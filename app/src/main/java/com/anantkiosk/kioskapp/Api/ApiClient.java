@@ -35,22 +35,22 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
 
     //live environment
-    public static final String BASE_URL = "https://posservice.lightningpos.com/";
-    public static String WS_BASE = "https://ecomsecureWCF.lightningpos.com";
-    public static final String IMG_BASE = "https://images.lightningpos.com/";
-    public static String authHeader="Bearer 971dcf8b19b3bc1cac56e40f5858bbad38823d4e";
-    public static final String BASE_URL_BLIP = "https://app.blipbillboards.com/external/";
-    public static final String BASE_URL_QT = "https://api.placeexchange.com/v3/";
-    public static String WebStoreURL = "http://posservice.lightningpos.com/";
+//    public static final String BASE_URL = "https://posservice.lightningpos.com/";
+//    public static String WS_BASE = "https://ecomsecureWCF.lightningpos.com";
+//    public static final String IMG_BASE = "https://images.lightningpos.com/";
+//    public static String authHeader="Bearer 971dcf8b19b3bc1cac56e40f5858bbad38823d4e";
+//    public static final String BASE_URL_BLIP = "https://app.blipbillboards.com/external/";
+//    public static final String BASE_URL_QT = "https://api.placeexchange.com/v3/";
+//    public static String WebStoreURL = "http://posservice.lightningpos.com/";
 
     //testserver
-//    public static final String BASE_URL = "http://evo.lightningpos.com/";
-//    public static String WS_BASE = "https://ecomtestWCF.lightningpos.com";
-//    public static final String IMG_BASE = "https://testimages.lightningpos.com/";
-//    public static String authHeader="Bearer 9ed36663c7905eb3dffe55d9ce79ef78cd30877a";
-//    public static final String BASE_URL_BLIP = "https://blipboards-tech.herokuapp.com/external/";
-//    public static final String BASE_URL_QT = "https://api.placeexchange.com/v3/";
-//    public static String WebStoreURL = "https://evo.lightningpos.com/";
+    public static final String BASE_URL = "http://evo.lightningpos.com/";
+    public static String WS_BASE = "https://ecomtestWCF.lightningpos.com";
+    public static final String IMG_BASE = "https://testimages.lightningpos.com/";
+    public static String authHeader="Bearer 9ed36663c7905eb3dffe55d9ce79ef78cd30877a";
+    public static final String BASE_URL_BLIP = "https://blipboards-tech.herokuapp.com/external/";
+    public static final String BASE_URL_QT = "https://api.placeexchange.com/v3/";
+    public static String WebStoreURL = "https://evo.lightningpos.com/";
 
 //   Local URL
 //    public static String BASE_URL = "http://192.168.172.244:140";
@@ -63,10 +63,7 @@ public class ApiClient {
 
 
     public static String WS_BASE_URL = WS_BASE + "/WebStoreRestService.svc/";
-
     public static String GETPOLE_IMAGES_DETAIL = "GetPoleDisplayImageForMobile/";
-
-
 
     private static Retrofit retrofit = null;
     private static OkHttpClient okHttpClient;

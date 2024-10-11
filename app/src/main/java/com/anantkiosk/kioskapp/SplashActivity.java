@@ -154,6 +154,7 @@ public class SplashActivity extends AppCompatActivity {
             if (savedStore == null) {
                 UtilsGlobal.call_log_WS(SplashActivity.this,"Going to Login Activity - 1 from Splash Screen ","","");
                 Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                Log.e("TAG", "janvi 1" );
                 startActivity(intent);
                 finish();
             } else {
@@ -180,6 +181,7 @@ public class SplashActivity extends AppCompatActivity {
         call1.enqueue(new Callback<ArrayList<Result>>() {
             @Override
             public void onResponse(Call<ArrayList<Result>> call, Response<ArrayList<Result>> response) {
+                Log.d("", "onResponse: "+response.body().toString());
                 if (response.body() != null) {
                     //version web
                     if (response.body().get(0).getWebstore() != null) {
@@ -200,6 +202,7 @@ public class SplashActivity extends AppCompatActivity {
                                 UtilsGlobal.call_log_WS(SplashActivity.this,"Going to Login Activity - 2 from Splash Screen ","","");
                                 Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                                 startActivity(intent);
+                                Log.e("TAG", "janvi: 2");
                                 finish();
                             }, SPLASH_TIME);
                         }
@@ -210,6 +213,7 @@ public class SplashActivity extends AppCompatActivity {
                         new Handler().postDelayed(() -> {
                             UtilsGlobal.call_log_WS(SplashActivity.this,"Going to Login Activity - 3 from Splash Screen ","","");
                             Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                            Log.e("TAG", "janvi 3" );
                             startActivity(intent);
                             finish();
                         }, SPLASH_TIME);
@@ -220,6 +224,7 @@ public class SplashActivity extends AppCompatActivity {
                     new Handler().postDelayed(() -> {
                         UtilsGlobal.call_log_WS(SplashActivity.this,"Going to Login Activity - 4 from Splash Screen ","","");
                         Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                        Log.e("TAG", "janvi 4" );
                         startActivity(intent);
                         finish();
                     }, SPLASH_TIME);
@@ -233,6 +238,7 @@ public class SplashActivity extends AppCompatActivity {
                 new Handler().postDelayed(() -> {
                     UtilsGlobal.call_log_WS(SplashActivity.this,"Going to Login Activity - 5 from Splash Screen ","","");
                     Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                    Log.e("TAG", "janvi 5" +t.getMessage() );
                     startActivity(intent);
                     finish();
                 }, SPLASH_TIME);
